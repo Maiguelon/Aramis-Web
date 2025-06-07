@@ -1,0 +1,42 @@
+{
+  "fee": {
+    "nombre": "Fee",
+    "precio_unitario": 115000
+  },  
+  "publicacion": {
+    "nombre": "Post",
+    "precio_unitario": 5000
+  },
+  "reel": {
+    "nombre": "Reel",
+    "precio_unitario": 17500
+  },
+  "historia": {
+    "nombre": "Historia",
+    "precio_unitario": 2000
+  },
+  "brandbook": {
+    "nombre": "Brand Book",
+    "precio_unitario": 35000
+  },
+  "tarjetas": {
+    "nombre": "Tarjetas de Presentación",
+    "precio_unitario": 9500
+  },
+  "folletos": {
+    "nombre": "Folletos",
+    "precio_unitario": 8000
+  },
+  "tiendanube": {
+    "nombre": "Página de Tiendanube",
+    "precio_unitario": 150000
+  },
+  "pagina": {
+    "nombre": "Página Personalizada (¡Como esta!)",
+    "precio_unitario": 400000
+  },
+  "moderacion": {
+    "nombre": "Moderación y respuesta de mensajes/comentarios",
+    "precio_unitario": 10000
+  }
+}
