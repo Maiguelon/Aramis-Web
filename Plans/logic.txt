@@ -1,0 +1,33 @@
+FUNCION CALCULAR_PLAN (fee, posts, reels, historias, moderacion, brandbook, tarjetas, folletos, tiendanube, pagina), (entero, entero(>=4), entero, entero, entero, entero, entero, entero, entero, entero) -> float
+
+total = 0
+nucleo = posts * 5000 + reels * 17500  + historias * 2000 + moderacion * 10000
+unicos = brandbook * 35000 + tarjetas * 9500 + folletos * 8000
+unicos_paginas = tiendanube * 150000 + pagina * 400000
+
+SI nucleo + unicos + unicos_paginas = 0
+    RETURN NULL
+
+SI nucleo = 0 
+    total = unicos + unicos_paginas
+    RETURN total
+
+SI nucleo < 54500
+    total = fee + nucleo + unicos * 0.8 + unicos_paginas
+    RETURN total
+
+SI nucleo >= 54500 & nucleo < 89000
+    total = fee + nucleo + unicos * 0.6 + unicos_paginas * 0.95
+    RETURN total
+
+SI nucleo <= 89000 & nucleo < 137000
+    nucleo_descuento = (nucleo - 89000) * 0.8
+    total = fee + 89000 + nucleo_descuento + unicos * 0.5 + unicos_paginas * 0.9
+    RETURN total
+
+SI nucleo > 137000
+    nucleo_descuento = (137000 - 89000) * 0.8 + 89000
+    nucleo_descuento2 = (nucleo - 137000) * 0.65
+    total = fee + nucleo_descuento + nucleo_descuento2 + unicos * 0.4 + unicos_paginas * 0.85
+    RETURN total
+
