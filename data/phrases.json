@@ -1,0 +1,20 @@
+{
+  "nucleo": {
+    "bajo": "Un plan liviano, ideal para comenzar a establecer tu presencia en redes.",
+    "medio": "Un plan equilibrado, pensado para que crezcas con constancia.",
+    "alto": "Un plan intenso, excelente opción para posicionar tu marca.",
+    "maximo": "Si ya estás establecido y buscas un salto cuantitativo y cualitativo, creaste un plan adecuado.",
+    "nulo": ""
+  },
+  "unicos": {
+    "brandbook": "Tendrás tu identidad visual definida por prefesionales",
+    "brandbook_extras": "Redefines tu identidad visual y la aprovechas con piezas gráficas.",
+    "extras": "Los elementos gráficos sacarán diferencia en tu zona.",
+    "ausente": ""
+  },
+  "paginas": {
+    "tiendanube": "Vas a contar con una tienda profesional en Tiendanube.",
+    "pagina": "Tu negocio tendrá una página personalizada (¡Como esta!)",
+    "ninguna": ""
+  }
+}
