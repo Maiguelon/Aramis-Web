@@ -1,6 +1,6 @@
 // components/PlanDescription.jsx
 import React from 'react';
-import { generarFrasesPlan } from '@/utils/PhrasesMaker';
+import { generarFrasesPlan } from '../utils/PhrasesMaker';
 
 const PlanDescription = ({ nucleo = 0, unicos = {}, pagina = '' }) => {
   const descripcion = generarFrasesPlan(nucleo, unicos, pagina);

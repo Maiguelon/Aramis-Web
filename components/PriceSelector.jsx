@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { calcularNucleo, calcularUnicos, calcularUnicosPaginas, calcularMensual, aplicarDescuentoMensual, calcularCostoUnicos } from '@/utils/PlanFunctions';
+import React, { useState, useEffect } from 'react';
+import { calcularNucleo, calcularUnicos, calcularUnicosPaginas, calcularMensual, aplicarDescuentoMensual, calcularCostoUnicos } from '../utils/PlanFunctions';
 
-export default function PriceSelectorForm() {
+export default function PriceSelectorForm({ onChange }) {
   const [form, setForm] = useState({
     posts: 0,
     reels: 0,
@@ -15,12 +15,16 @@ export default function PriceSelectorForm() {
   });
 
   const handleChange = (field, value) => {
-    setForm({ ...form, [field]: value });
+    setForm(prev => ({ ...prev, [field]: value }));
   };
 
   const toggleSingleOption = (field) => {
-    setForm((prev) => ({ ...prev, tiendanube: 0, pagina: 0, [field]: prev[field] === 1 ? 0 : 1 }));
+    setForm(prev => ({ ...prev, tiendanube: 0, pagina: 0, [field]: prev[field] === 1 ? 0 : 1 }));
   };
+
+  useEffect(() => {
+    onChange(form);
+  }, [form, onChange]);
 
   const nucleo = calcularNucleo(form);
   const unicos = calcularUnicos(form);
@@ -52,7 +56,7 @@ export default function PriceSelectorForm() {
         ))}
       </section>
 
-      {/* Elementos de una vez */}
+      {/* Elementos únicos */}
       <section>
         <h3 className="text-lg font-semibold mb-2">Elementos de una vez</h3>
         <div className="flex justify-between items-center mb-2">

@@ -1,5 +1,5 @@
-import servicios from '@/data/services.json';
-import frases from '@/data/phrases.json';
+import servicios from '../data/services.json';
+import frases from '../data/phrases.json';
 
 export function generarDescripcionPlan({ nucleo, brandbook = 0, tarjetas = 0, folletos = 0, tiendanube = 0, pagina = 0 }) {
   const limiteInferior = servicios.limite_inferior.precio_unitario;
@@ -48,5 +48,5 @@ export function generarDescripcionPlan({ nucleo, brandbook = 0, tarjetas = 0, fo
     return conector ? `${conector} ${f}` : f;
   });
 
-  return resultado.join("\n");
+  return resultado;
 }

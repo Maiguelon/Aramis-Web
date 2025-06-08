@@ -1,4 +1,4 @@
-import servicios from '@/data/services.json';
+import servicios from '../data/services.json';
 
 export function calcularNucleo({ posts = 0, reels = 0, historias = 0, moderacion = 0 }) {
   return (
