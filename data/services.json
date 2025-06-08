@@ -2,7 +2,19 @@
   "fee": {
     "nombre": "Fee",
     "precio_unitario": 115000
+  },
+  "limite_inferior": {
+    "nombre": "Limite_Inferior",
+    "precio_unitario": 54500
   },  
+  "limite_medio": {
+    "nombre": "Limite_Medio",
+    "precio_unitario": 89000
+  },  
+  "limite_superior": {
+    "nombre": "Limite_Superior",
+    "precio_unitario": 130000
+  },    
   "publicacion": {
     "nombre": "Post",
     "precio_unitario": 5000
