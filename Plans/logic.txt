@@ -1,33 +1,119 @@
-FUNCION CALCULAR_PLAN (fee, posts, reels, historias, moderacion, brandbook, tarjetas, folletos, tiendanube, pagina), (entero, entero(>=4), entero, entero, entero, entero, entero, entero, entero, entero) -> float
-
-total = 0
+// Leer y guardar las variables posts, reels, historias, moderacion, brandbook, tarjetas, folletos, tiendanube, pagina
+fee = 115000
+limite_inferior = 54500
+limite_medio = 89000
+limite_superior = 137000
 nucleo = posts * 5000 + reels * 17500  + historias * 2000 + moderacion * 10000
 unicos = brandbook * 35000 + tarjetas * 9500 + folletos * 8000
 unicos_paginas = tiendanube * 150000 + pagina * 400000
+nucleo_grande = limite_medio + (nucleo - limite_medio) * 0.8
+nucleo_muy_grande = limite_medio + (limite_superior - limite_medio) * 0.8 + (nucleo - limite_superior) * 0.65
 
+
+FUNCION DESCUENTO_TIENDANUBE (volumen) (float) -> float
+    RETORNA volumen * 0.1
+FIN FUNCION
+
+FUNCION DESCUENTO_PAGINA (volumen) (float) -> float
+    RETORNA volumen * 0.2
+FIN FUNCION
+
+FUNCION CALCULAR_MENSUAL (nucleo) (float) -> float
+    SEGUN nucleo
+        1- nucleo < limite_medio
+                RETORNA fee + nucleo
+
+        2- nucleo >= limite_medio & nucleo < limite_superior
+                RETORNA fee + nucleo_grande
+
+        3- nucleo > limite_superior
+                RETORNA fee + nucleo_muy_grande
+    FIN SEGUN
+FIN FUNCION
+
+FUNCION MENSUAL_REAL (mensual, tiendanube, pagina), (float, entero, entero) -> float
+    SI tiendanube + pagina = 0
+        RETORNA mensual
+    SINO
+        SI tiendanube = 1
+            mensual = mensual - DESCUENTO_TIENDANUBE(mensual)
+        SINO    
+            mensual = mensual - DESCUENTO_PAGINA(mensual)
+        FIN SI
+    FIN SI
+FIN FUNCION
+
+FUNCION COSTO_UNICOS(nucleo, mensual_real, unicos_paginas, unicos) -> float
+    SI mensual_real = 0 & unicos_paginas = 0
+        RETORNA unicos
+    FIN SI
+    SI mensual_real = 0 & unicos_paginas != 0
+        RETORNA unicos * 0.8
+    FIN SI
+
+    SEGUN nucleo
+        1- nucleo < limite_inferior
+            RETORNA unicos * 0.8
+        2- nucleo >= limite_inferior & nucleo < limite_medio
+            RETORNA unicos * 0.65
+        3- nucleo >= limite_medio & nucleo < limite_superior
+            RETORNA unicos * 0.5
+        4- nucleo >= limite_superior
+            RETORNA unicos * 0.4
+    FIN SEGUN
+FIN FUNCION
+
+
+
+// Enfoque previo
+FUNCION CALCULAR_PLAN (posts, reels, historias, moderacion, brandbook, tarjetas, folletos, tiendanube, pagina), (entero(>=4), entero, entero, entero, entero, entero, entero, entero, entero) -> float
 SI nucleo + unicos + unicos_paginas = 0
     RETURN NULL
 
 SI nucleo = 0 
-    total = unicos + unicos_paginas
-    RETURN total
+    SI unicos_paginas = 0
+        RETORNA unicos
+    SINO
+        RETORNA unicos_paginas + unicos * 0.8
+    FIN SI
 
-SI nucleo < 54500
-    total = fee + nucleo + unicos * 0.8 + unicos_paginas
-    RETURN total
+SINO
+    SEGUN nucleo
+        1- nucleo < limite_inferior
+                total = fee + nucleo + unicos * 0.8
 
-SI nucleo >= 54500 & nucleo < 89000
-    total = fee + nucleo + unicos * 0.6 + unicos_paginas * 0.95
-    RETURN total
+        2- nucleo limite_inferior & nucleo < limite_medio
+                total = fee + nucleo + unicos * 0.65
 
-SI nucleo <= 89000 & nucleo < 137000
-    nucleo_descuento = (nucleo - 89000) * 0.8
-    total = fee + 89000 + nucleo_descuento + unicos * 0.5 + unicos_paginas * 0.9
-    RETURN total
+        3- nucleo >= limite_medio & nucleo < limite_superior
+                total = fee + nucleo_grande + unicos * 0.5
 
-SI nucleo > 137000
-    nucleo_descuento = (137000 - 89000) * 0.8 + 89000
-    nucleo_descuento2 = (nucleo - 137000) * 0.65
-    total = fee + nucleo_descuento + nucleo_descuento2 + unicos * 0.4 + unicos_paginas * 0.85
-    RETURN total
+        4- nucleo > limite_superior
+                total = fee + nucleo_muy_grande + unicos * 0.4   
+FIN SI
 
+    SI tiendanube = 1
+        SI nucleo < limite_medio
+            total = total - nucleo * 0.1 + unicos_paginas // por 3 meses
+        SINO
+            SEGUN nucleo
+            1- nucleo >= limite_medio & nucleo < limite_superior
+                total = total - nucleo_grande * 0.1 + unicos_paginas
+            2- nucleo > limite_superior
+                total = total - nucleo_muy_grande * 0.1 + unicos_paginas
+        FIN SI
+    FIN SI
+
+    SI pagina = 1
+        SI nucleo < limite_medio
+            total = total - nucleo * 0.2 // por 3 meses
+        SINO
+            SEGUN nucleo
+            1- nucleo >= limite_medio & nucleo < limite_superior
+                total = total - nucleo_grande * 0.2
+            2- nucleo > limite_superior
+                total = total - nucleo_muy_grande * 0.2
+        FIN SI
+    FIN SI
+
+RETORNA total
