@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { calcularNucleo, calcularUnicos, calcularUnicosPaginas, calcularMensual, aplicarDescuentoMensual, calcularCostoUnicos } from '../utils/PlanFunctions';
+import {
+  calcularNucleo,
+  calcularUnicos,
+  calcularUnicosPaginas,
+  calcularMensual,
+  aplicarDescuentoMensual,
+  calcularCostoUnicos,
+} from '../utils/PlanFunctions';
 
 export default function PriceSelectorForm({ onChange }) {
   const [form, setForm] = useState({
     posts: 0,
     reels: 0,
     historias: 0,
-    moderacion: 0,
-    brandbook: 0,
-    tarjetas: 0,
+    moderacion: false,
+    brandbook: false,
+    tarjetas: false,
     folletos: 0,
-    tiendanube: 0,
-    pagina: 0,
+    tiendanube: false,
+    pagina: false,
   });
 
   const handleChange = (field, value) => {
@@ -19,20 +26,40 @@ export default function PriceSelectorForm({ onChange }) {
   };
 
   const toggleSingleOption = (field) => {
-    setForm(prev => ({ ...prev, tiendanube: 0, pagina: 0, [field]: prev[field] === 1 ? 0 : 1 }));
+    setForm(prev => ({
+      ...prev,
+      tiendanube: false,
+      pagina: false,
+      [field]: !prev[field],
+    }));
+  };
+
+  const tieneElementosSeleccionados = () => {
+    const { posts, reels, historias, moderacion, brandbook, tarjetas, folletos, tiendanube, pagina } = form;
+    return (
+      posts > 0 ||
+      reels > 0 ||
+      historias > 0 ||
+      moderacion ||
+      brandbook ||
+      tarjetas ||
+      folletos > 0 ||
+      tiendanube ||
+      pagina
+    );
   };
 
   useEffect(() => {
     onChange(form);
   }, [form, onChange]);
 
+  // Cálculos
   const nucleo = calcularNucleo(form);
   const unicos = calcularUnicos(form);
   const unicosPaginas = calcularUnicosPaginas(form);
   const mensual = calcularMensual(nucleo);
   const mensualConDescuento = aplicarDescuentoMensual(mensual, form);
   const unicosFinal = calcularCostoUnicos(nucleo, mensualConDescuento, unicos, unicosPaginas);
-  const total = mensualConDescuento + unicosFinal + unicosPaginas;
 
   return (
     <div className="p-6 space-y-6 bg-white rounded-xl shadow-md max-w-2xl mx-auto">
@@ -41,7 +68,7 @@ export default function PriceSelectorForm({ onChange }) {
       {/* Elementos mensuales */}
       <section>
         <h3 className="text-lg font-semibold mb-2">Elementos mensuales</h3>
-        {['posts', 'reels', 'historias', 'moderacion'].map((item) => (
+        {['posts', 'reels', 'historias'].map((item) => (
           <div key={item} className="flex justify-between items-center mb-2">
             <label className="capitalize">{item}</label>
             <input
@@ -54,6 +81,14 @@ export default function PriceSelectorForm({ onChange }) {
             />
           </div>
         ))}
+        <div className="flex justify-between items-center mb-2">
+          <label>Moderación</label>
+          <input
+            type="checkbox"
+            checked={form.moderacion}
+            onChange={() => handleChange('moderacion', !form.moderacion)}
+          />
+        </div>
       </section>
 
       {/* Elementos únicos */}
@@ -63,16 +98,16 @@ export default function PriceSelectorForm({ onChange }) {
           <label>Brandbook</label>
           <input
             type="checkbox"
-            checked={form.brandbook === 1}
-            onChange={() => handleChange('brandbook', form.brandbook === 1 ? 0 : 1)}
+            checked={form.brandbook}
+            onChange={() => handleChange('brandbook', !form.brandbook)}
           />
         </div>
         <div className="flex justify-between items-center mb-2">
           <label>Tarjetas</label>
           <input
             type="checkbox"
-            checked={form.tarjetas === 1}
-            onChange={() => handleChange('tarjetas', form.tarjetas === 1 ? 0 : 1)}
+            checked={form.tarjetas}
+            onChange={() => handleChange('tarjetas', !form.tarjetas)}
           />
         </div>
         <div className="flex justify-between items-center mb-2">
@@ -88,14 +123,14 @@ export default function PriceSelectorForm({ onChange }) {
         </div>
       </section>
 
-      {/* Tu página web */}
+      {/* Página web */}
       <section>
         <h3 className="text-lg font-semibold mb-2">Tu página web</h3>
         <div className="flex justify-between items-center mb-2">
           <label>Tiendanube</label>
           <input
             type="checkbox"
-            checked={form.tiendanube === 1}
+            checked={form.tiendanube}
             onChange={() => toggleSingleOption('tiendanube')}
           />
         </div>
@@ -103,17 +138,27 @@ export default function PriceSelectorForm({ onChange }) {
           <label>Página personalizada</label>
           <input
             type="checkbox"
-            checked={form.pagina === 1}
+            checked={form.pagina}
             onChange={() => toggleSingleOption('pagina')}
           />
         </div>
       </section>
 
-      <div className="text-center mt-6">
-        <p className="font-semibold">Total mensual estimado: ${mensualConDescuento.toFixed(2)}</p>
-        <p className="font-semibold">Costo único estimado: ${(unicosFinal + unicosPaginas).toFixed(2)}</p>
-        <p className="font-bold text-xl mt-2">Total estimado: ${total.toFixed(2)}</p>
-      </div>
+      {/* Resultados (solo si se seleccionó algo) */}
+      {tieneElementosSeleccionados() && (
+        <div className="text-center mt-6 space-y-1">
+          {mensualConDescuento > 0 && (
+            <p className="font-semibold">
+              Total mensual estimado: ${mensualConDescuento.toFixed(2)}
+            </p>
+          )}
+          {(unicosFinal > 0 || unicosPaginas > 0) && (
+            <p className="font-semibold">
+              Costo único estimado: ${(unicosFinal + unicosPaginas).toFixed(2)}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
