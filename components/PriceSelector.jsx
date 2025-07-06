@@ -1,12 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {
-  calcularNucleo,
-  calcularUnicos,
-  calcularUnicosPaginas,
-  calcularMensual,
-  aplicarDescuentoMensual,
-  calcularCostoUnicos,
-} from '../utils/PlanFunctions';
 
 export default function PriceSelectorForm({ onChange }) {
   const [form, setForm] = useState({
@@ -34,32 +26,9 @@ export default function PriceSelectorForm({ onChange }) {
     }));
   };
 
-  const tieneElementosSeleccionados = () => {
-    const { posts, reels, historias, moderacion, brandbook, tarjetas, folletos, tiendanube, pagina } = form;
-    return (
-      posts > 0 ||
-      reels > 0 ||
-      historias > 0 ||
-      moderacion ||
-      brandbook ||
-      tarjetas ||
-      folletos > 0 ||
-      tiendanube ||
-      pagina
-    );
-  };
-
   useEffect(() => {
     onChange(form);
   }, [form, onChange]);
-
-  // Cálculos
-  const nucleo = calcularNucleo(form);
-  const unicos = calcularUnicos(form);
-  const unicosPaginas = calcularUnicosPaginas(form);
-  const mensual = calcularMensual(nucleo);
-  const mensualConDescuento = aplicarDescuentoMensual(mensual, form);
-  const unicosFinal = calcularCostoUnicos(nucleo, mensualConDescuento, unicos, unicosPaginas);
 
   return (
     <div className="p-6 space-y-6 bg-white rounded-xl shadow-md max-w-2xl mx-auto">
@@ -143,22 +112,6 @@ export default function PriceSelectorForm({ onChange }) {
           />
         </div>
       </section>
-
-      {/* Resultados (solo si se seleccionó algo) */}
-      {tieneElementosSeleccionados() && (
-        <div className="text-center mt-6 space-y-1">
-          {mensualConDescuento > 0 && (
-            <p className="font-semibold">
-              Total mensual estimado: ${mensualConDescuento.toFixed(2)}
-            </p>
-          )}
-          {(unicosFinal > 0 || unicosPaginas > 0) && (
-            <p className="font-semibold">
-              Costo único estimado: ${(unicosFinal + unicosPaginas).toFixed(2)}
-            </p>
-          )}
-        </div>
-      )}
     </div>
   );
 }

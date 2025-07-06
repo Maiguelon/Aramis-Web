@@ -1,31 +1,31 @@
 {
   "fee": {
     "nombre": "Fee",
-    "precio_unitario": 115000
+    "precio_unitario": 40000
   },
   "limite_inferior": {
     "nombre": "Limite_Inferior",
-    "precio_unitario": 54500
-  },  
+    "precio_unitario": 109000
+  },
   "limite_medio": {
     "nombre": "Limite_Medio",
-    "precio_unitario": 89000
-  },  
+    "precio_unitario": 222500
+  },
   "limite_superior": {
     "nombre": "Limite_Superior",
-    "precio_unitario": 130000
-  },    
+    "precio_unitario": 390000
+  },
   "publicacion": {
     "nombre": "Post",
-    "precio_unitario": 5000
+    "precio_unitario": 9500
   },
   "reel": {
     "nombre": "Reel",
-    "precio_unitario": 17500
+    "precio_unitario": 40000
   },
   "historia": {
     "nombre": "Historia",
-    "precio_unitario": 2000
+    "precio_unitario": 3000
   },
   "brandbook": {
     "nombre": "Brand Book",

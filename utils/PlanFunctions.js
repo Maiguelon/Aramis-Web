@@ -24,20 +24,25 @@ export function calcularUnicosPaginas({ tiendanube = 0, pagina = 0 }) {
   );
 }
 
+// NUEVA LÓGICA AJUSTADA:
 export function calcularMensual(nucleo) {
   const fee = servicios.fee.precio_unitario;
+  const limiteInferior = servicios.limite_inferior.precio_unitario;
   const limiteMedio = servicios.limite_medio.precio_unitario;
   const limiteSuperior = servicios.limite_superior.precio_unitario;
 
-  if (nucleo < limiteMedio) {
+  if (nucleo < limiteInferior) {
     return fee + nucleo;
+  } else if (nucleo >= limiteInferior && nucleo < limiteMedio) {
+    return fee + (limiteInferior + (nucleo - limiteInferior) * 0.85); // 15% descuento
   } else if (nucleo >= limiteMedio && nucleo < limiteSuperior) {
-    return fee + (limiteMedio + (nucleo - limiteMedio) * 0.8);
+    return fee + (limiteMedio + (nucleo - limiteMedio) * 0.85); // 15% descuento también
   } else {
-    return fee + (limiteMedio + (limiteSuperior - limiteMedio) * 0.8 + (nucleo - limiteSuperior) * 0.65);
+    return fee + (limiteMedio + (limiteSuperior - limiteMedio) * 0.85 + (nucleo - limiteSuperior) * 0.75); // 25% descuento
   }
 }
 
+// Las demás funciones quedan igual.
 export function aplicarDescuentoMensual(mensual, { tiendanube = 0, pagina = 0 }) {
   if (tiendanube + pagina === 0) return mensual;
   if (tiendanube === 1) return mensual * 0.9; // 10% descuento
@@ -58,3 +63,4 @@ export function calcularCostoUnicos(nucleo, mensualReal, unicos, unicosPaginas) 
   if (nucleo >= limiteMedio && nucleo < limiteSuperior) return unicos * 0.5;
   return unicos * 0.4;
 }
+
