@@ -13,10 +13,15 @@ export default function PriceSelectorForm({ onChange }) {
     pagina: false,
   });
 
+  // Asegura que los valores estén siempre dentro de los límites
   const handleChange = (field, value) => {
-    setForm(prev => ({ ...prev, [field]: value }));
+    setForm(prev => ({
+      ...prev,
+      [field]: value,
+    }));
   };
 
+  // Para que solo puedas elegir una opción de página web a la vez
   const toggleSingleOption = (field) => {
     setForm(prev => ({
       ...prev,
@@ -37,19 +42,43 @@ export default function PriceSelectorForm({ onChange }) {
       {/* Elementos mensuales */}
       <section>
         <h3 className="text-lg font-semibold mb-2">Elementos mensuales</h3>
-        {['posts', 'reels', 'historias'].map((item) => (
-          <div key={item} className="flex justify-between items-center mb-2">
-            <label className="capitalize">{item}</label>
-            <input
-              type="number"
-              min={0}
-              step={item === 'reels' ? 1 : item === 'posts' ? 2 : 4}
-              value={form[item]}
-              onChange={(e) => handleChange(item, parseInt(e.target.value))}
-              className="border rounded px-2 py-1 w-20 text-right"
-            />
-          </div>
-        ))}
+
+        <div className="flex justify-between items-center mb-2">
+          <label>Posts</label>
+          <input
+            type="number"
+            min={0}
+            max={12}
+            step={2}
+            value={form.posts}
+            onChange={(e) => handleChange('posts', Math.max(0, Math.min(12, parseInt(e.target.value) || 0)))}
+            className="border rounded px-2 py-1 w-20 text-right"
+          />
+        </div>
+        <div className="flex justify-between items-center mb-2">
+          <label>Reels</label>
+          <input
+            type="number"
+            min={0}
+            max={6}
+            step={1}
+            value={form.reels}
+            onChange={(e) => handleChange('reels', Math.max(0, Math.min(6, parseInt(e.target.value) || 0)))}
+            className="border rounded px-2 py-1 w-20 text-right"
+          />
+        </div>
+        <div className="flex justify-between items-center mb-2">
+          <label>Historias</label>
+          <input
+            type="number"
+            min={0}
+            max={20}
+            step={4}
+            value={form.historias}
+            onChange={(e) => handleChange('historias', Math.max(0, Math.min(20, parseInt(e.target.value) || 0)))}
+            className="border rounded px-2 py-1 w-20 text-right"
+          />
+        </div>
         <div className="flex justify-between items-center mb-2">
           <label>Moderación</label>
           <input
@@ -85,8 +114,9 @@ export default function PriceSelectorForm({ onChange }) {
             type="number"
             min={0}
             max={2}
+            step={1}
             value={form.folletos}
-            onChange={(e) => handleChange('folletos', parseInt(e.target.value))}
+            onChange={(e) => handleChange('folletos', Math.max(0, Math.min(2, parseInt(e.target.value) || 0)))}
             className="border rounded px-2 py-1 w-20 text-right"
           />
         </div>
@@ -115,3 +145,5 @@ export default function PriceSelectorForm({ onChange }) {
     </div>
   );
 }
+
+

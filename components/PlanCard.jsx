@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function PlanCard({ precioMensual, costoUnicos, phrases, selections }) {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [enviado, setEnviado] = useState(false);
+  const [enviadoBanda, setEnviadoBanda] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
     contacto: '',
     redes: ''
   });
+
+  useEffect(() => {
+    setEnviado(false);
+    setEnviadoBanda(false); // AGREGÁ esta línea
+  }, [selections]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,8 +37,11 @@ export default function PlanCard({ precioMensual, costoUnicos, phrases, selectio
 
       if (response.ok) {
         setEnviado(true);
+        setEnviadoBanda(true);
         setMostrarFormulario(false);
         setFormData({ nombre: '', contacto: '', redes: '' });
+        // Oculta el mensaje grande a los 4 segundos, pero deja la banda
+        setTimeout(() => setEnviado(false), 4000);
       }
     } catch (err) {
       console.error('Error al enviar el formulario:', err);
@@ -58,11 +68,58 @@ export default function PlanCard({ precioMensual, costoUnicos, phrases, selectio
     );
   }
 
+  // Clasificar ítems según tipo
+
+  // Mensuales
+  const resumenMensual = [];
+  if (selections.posts > 0) resumenMensual.push(`${selections.posts} post${selections.posts > 1 ? 's' : ''}`);
+  if (selections.reels > 0) resumenMensual.push(`${selections.reels} reel${selections.reels > 1 ? 's' : ''}`);
+  if (selections.historias > 0) resumenMensual.push(`${selections.historias} historia${selections.historias > 1 ? 's' : ''}`);
+  if (selections.moderacion) resumenMensual.push("moderación");
+
+  // Únicos
+  const resumenUnicos = [];
+  if (selections.brandbook) resumenUnicos.push("Brandbook");
+  if (selections.tarjetas) resumenUnicos.push("tarjeta");
+  if (selections.folletos > 0) resumenUnicos.push(`${selections.folletos} folleto${selections.folletos > 1 ? 's' : ''}`);
+
+  // Web
+  const resumenWeb = [];
+  if (selections.tiendanube) resumenWeb.push("Tiendanube");
+  if (selections.pagina) resumenWeb.push("Página personalizada");
+
+  // Return
   return (
     <div className="bg-white p-6 rounded-xl shadow-md">
       <h2 className="text-xl font-bold mb-2">Tu Plan</h2>
-      <p className="font-semibold">Precio mensual: ${precioMensual.toLocaleString()}</p>
-      <p className="font-semibold mb-2">Costo único: ${costoUnicos.toLocaleString()}</p>
+      {/* Bloques claros de resumen */}
+      {resumenMensual.length > 0 && (
+        <div className="mb-2">
+          <div className="text-sm font-semibold text-gray-700">Lo que vas a recibir cada mes:</div>
+          <div className="text-base text-gray-900">{resumenMensual.join(', ')}</div>
+        </div>
+      )}
+      {resumenUnicos.length > 0 && (
+        <div className="mb-2">
+          <div className="text-sm font-semibold text-gray-700">Extras únicos:</div>
+          <div className="text-base text-gray-900">{resumenUnicos.join(', ')}</div>
+        </div>
+      )}
+      {resumenWeb.length > 0 && (
+        <div className="mb-2">
+          <div className="text-sm font-semibold text-gray-700">Tu página web:</div>
+          <div className="text-base text-gray-900">{resumenWeb.join(', ')}</div>
+        </div>
+      )}
+
+
+      {precioMensual > 0 && (
+        <p className="font-semibold">Precio mensual: ${precioMensual.toLocaleString()}</p>
+      )}
+      {costoUnicos > 0 && (
+        <p className="font-semibold mb-2">Costo único: ${costoUnicos.toLocaleString()}</p>
+      )}
+
 
       {phrases.map((frase, idx) => (
         <p key={idx} className="text-sm text-gray-700">{frase}</p>
@@ -75,11 +132,7 @@ export default function PlanCard({ precioMensual, costoUnicos, phrases, selectio
         ¡Quiero este plan!
       </button>
 
-      {enviado ? (
-        <div className="mt-4 bg-green-500 text-white p-4 rounded-md text-center">
-          ¡Gracias por enviar tu plan! Te vamos a contactar pronto.
-        </div>
-      ) : mostrarFormulario && (
+      {mostrarFormulario && (
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <input
             type="text"
@@ -110,7 +163,21 @@ export default function PlanCard({ precioMensual, costoUnicos, phrases, selectio
           </button>
         </form>
       )}
+      {
+        enviado && (
+          <div className="mt-4 bg-green-500 text-white p-2 rounded-md text-center text-base font-semibold transition-all">
+            ¡Gracias por enviar tu plan! Te vamos a contactar pronto.
+          </div>
+        )
+      }
 
+      {
+        enviadoBanda && !enviado && (
+          <div className="w-full border-b-4 border-green-500 text-green-700 text-xs text-center pb-1">
+            Plan enviado correctamente
+          </div>
+        )
+      }
     </div>
   );
 }

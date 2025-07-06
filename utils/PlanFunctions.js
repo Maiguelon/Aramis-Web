@@ -31,6 +31,8 @@ export function calcularMensual(nucleo) {
   const limiteMedio = servicios.limite_medio.precio_unitario;
   const limiteSuperior = servicios.limite_superior.precio_unitario;
 
+  if (nucleo === 0) return 0; 
+
   if (nucleo < limiteInferior) {
     return fee + nucleo;
   } else if (nucleo >= limiteInferior && nucleo < limiteMedio) {
