@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function PlanCard({ precioMensual, costoUnicos, phrases, selections }) {
+export default function PlanCard({ titulo = "Tu Plan", precioMensual, costoUnicos, phrases, selections }) {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [enviadoBanda, setEnviadoBanda] = useState(false);
@@ -12,7 +12,7 @@ export default function PlanCard({ precioMensual, costoUnicos, phrases, selectio
 
   useEffect(() => {
     setEnviado(false);
-    setEnviadoBanda(false); // AGREGÁ esta línea
+    setEnviadoBanda(false);
   }, [selections]);
 
 
@@ -62,7 +62,7 @@ export default function PlanCard({ precioMensual, costoUnicos, phrases, selectio
   if (!hayContenido) {
     return (
       <div className="bg-white p-6 rounded-xl shadow-md">
-        <h2 className="text-xl font-bold mb-2">Tu Plan</h2>
+        <h2 className="text-xl font-bold mb-2">{titulo}</h2>
         <p className="text-gray-600">Aguardamos tus selecciones para armar tu plan personalizado.</p>
       </div>
     );
@@ -91,7 +91,7 @@ export default function PlanCard({ precioMensual, costoUnicos, phrases, selectio
   // Return
   return (
     <div className="bg-white p-6 rounded-xl shadow-md">
-      <h2 className="text-xl font-bold mb-2">Tu Plan</h2>
+      <h2 className="text-xl font-bold mb-2">{titulo}</h2>
       {/* Bloques claros de resumen */}
       {resumenMensual.length > 0 && (
         <div className="mb-2">
