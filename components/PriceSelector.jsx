@@ -1,3 +1,4 @@
+// components/PriceSelector.jsx
 import React, { useState, useEffect } from 'react';
 
 export default function PriceSelectorForm({ onChange }) {
@@ -13,7 +14,14 @@ export default function PriceSelectorForm({ onChange }) {
     pagina: false,
   });
 
-  // Asegura que los valores estén siempre dentro de los límites
+  // Cambia estilos de inputs y agrega microanimaciones/focus
+  const baseInput =
+    "border rounded-xl px-3 py-2 w-20 text-right shadow focus:ring-2 focus:ring-accent-yellow focus:border-accent-yellow transition-all";
+  const baseLabel =
+    "font-semibold text-primary hover:text-accent-blue transition-all duration-200 cursor-pointer";
+  const baseSection =
+    "bg-bg-light/60 p-4 rounded-2xl mb-4 shadow-inner border border-accent-yellow/10";
+
   const handleChange = (field, value) => {
     setForm(prev => ({
       ...prev,
@@ -21,7 +29,6 @@ export default function PriceSelectorForm({ onChange }) {
     }));
   };
 
-  // Para que solo puedas elegir una opción de página web a la vez
   const toggleSingleOption = (field) => {
     setForm(prev => ({
       ...prev,
@@ -36,15 +43,12 @@ export default function PriceSelectorForm({ onChange }) {
   }, [form, onChange]);
 
   return (
-    <div className="p-6 space-y-6 bg-white rounded-xl shadow-md max-w-2xl mx-auto">
-      <h2 className="text-xl font-bold text-center">Armá tu plan</h2>
-
+    <form className="space-y-6">
       {/* Elementos mensuales */}
-      <section>
-        <h3 className="text-lg font-semibold mb-2">Elementos mensuales</h3>
-
+      <section className={baseSection}>
+        <h3 className="text-lg font-serif font-bold mb-3 text-secondary">Elementos mensuales</h3>
         <div className="flex justify-between items-center mb-2">
-          <label>Posts</label>
+          <label className={baseLabel}>Posts</label>
           <input
             type="number"
             min={0}
@@ -52,11 +56,11 @@ export default function PriceSelectorForm({ onChange }) {
             step={2}
             value={form.posts}
             onChange={(e) => handleChange('posts', Math.max(0, Math.min(12, parseInt(e.target.value) || 0)))}
-            className="border rounded px-2 py-1 w-20 text-right"
+            className={baseInput}
           />
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label>Reels</label>
+          <label className={baseLabel}>Reels</label>
           <input
             type="number"
             min={0}
@@ -64,11 +68,11 @@ export default function PriceSelectorForm({ onChange }) {
             step={1}
             value={form.reels}
             onChange={(e) => handleChange('reels', Math.max(0, Math.min(6, parseInt(e.target.value) || 0)))}
-            className="border rounded px-2 py-1 w-20 text-right"
+            className={baseInput}
           />
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label>Historias</label>
+          <label className={baseLabel}>Historias</label>
           <input
             type="number"
             min={0}
@@ -76,40 +80,43 @@ export default function PriceSelectorForm({ onChange }) {
             step={4}
             value={form.historias}
             onChange={(e) => handleChange('historias', Math.max(0, Math.min(20, parseInt(e.target.value) || 0)))}
-            className="border rounded px-2 py-1 w-20 text-right"
+            className={baseInput}
           />
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label>Moderación</label>
+          <label className={baseLabel}>Moderación</label>
           <input
             type="checkbox"
             checked={form.moderacion}
             onChange={() => handleChange('moderacion', !form.moderacion)}
+            className="accent-accent-yellow w-5 h-5"
           />
         </div>
       </section>
 
       {/* Elementos únicos */}
-      <section>
-        <h3 className="text-lg font-semibold mb-2">Elementos de una vez</h3>
+      <section className={baseSection}>
+        <h3 className="text-lg font-serif font-bold mb-3 text-secondary">Elementos de una vez</h3>
         <div className="flex justify-between items-center mb-2">
-          <label>Brandbook</label>
+          <label className={baseLabel}>Brandbook</label>
           <input
             type="checkbox"
             checked={form.brandbook}
             onChange={() => handleChange('brandbook', !form.brandbook)}
+            className="accent-accent-blue w-5 h-5"
           />
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label>Tarjetas</label>
+          <label className={baseLabel}>Tarjetas</label>
           <input
             type="checkbox"
             checked={form.tarjetas}
             onChange={() => handleChange('tarjetas', !form.tarjetas)}
+            className="accent-secondary w-5 h-5"
           />
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label>Folletos</label>
+          <label className={baseLabel}>Folletos</label>
           <input
             type="number"
             min={0}
@@ -117,33 +124,36 @@ export default function PriceSelectorForm({ onChange }) {
             step={1}
             value={form.folletos}
             onChange={(e) => handleChange('folletos', Math.max(0, Math.min(2, parseInt(e.target.value) || 0)))}
-            className="border rounded px-2 py-1 w-20 text-right"
+            className={baseInput}
           />
         </div>
       </section>
 
       {/* Página web */}
-      <section>
-        <h3 className="text-lg font-semibold mb-2">Tu página web</h3>
+      <section className={baseSection}>
+        <h3 className="text-lg font-serif font-bold mb-3 text-accent-blue">Tu página web</h3>
         <div className="flex justify-between items-center mb-2">
-          <label>Tiendanube</label>
+          <label className={baseLabel}>Tiendanube</label>
           <input
             type="checkbox"
             checked={form.tiendanube}
             onChange={() => toggleSingleOption('tiendanube')}
+            className="accent-accent-yellow w-5 h-5"
           />
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label>Página personalizada</label>
+          <label className={baseLabel}>Página personalizada</label>
           <input
             type="checkbox"
             checked={form.pagina}
             onChange={() => toggleSingleOption('pagina')}
+            className="accent-accent-yellow w-5 h-5"
           />
         </div>
       </section>
-    </div>
+    </form>
   );
 }
+
 
 

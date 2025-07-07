@@ -13,6 +13,8 @@ module.exports = {
         "accent-yellow": "#f4b943", // Amarillo acento
         "accent-blue": "#5c9cd9",   // Azul claro
         "bg-light": "#e9ecf1",      // Casi blanco (fondo)
+        "accent-orange": "#ffa859",  // Naranja nuevo
+        black: "#222",               // Negro (más suave que el #000)
       },
       fontFamily: {
         serif: ['DM Serif Display', 'serif'],

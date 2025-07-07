@@ -42,7 +42,7 @@ export default function Home() {
         <h1 className="text-4xl md:text-5xl font-bold mb-4 font-serif">Aramis</h1>
         <p className="text-xl md:text-2xl mb-8 font-sans">Marketing Digital que impulsa tu negocio</p>
         <Link href="/plan_personalizado">
-          <button className="bg-white text-primary font-semibold px-6 py-2 rounded-full hover:bg-bg-light transition">
+          <button className="bg-white text-primary font-semibold px-6 py-2 rounded-full shadow-lg border-2 border-accent-yellow hover:bg-accent-yellow hover:text-primary transition-all">
             Armá tu plan personalizado
           </button>
         </Link>

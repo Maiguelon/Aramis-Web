@@ -1,6 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowRightCircle } from 'lucide-react';
 
-export default function PlanCard({ titulo = "Tu Plan", precioMensual, costoUnicos, phrases, selections }) {
+const colorStyles = {
+  mensual: "border-primary text-primary",
+  unicos: "border-secondary text-secondary",
+  web: "border-accent-yellow text-accent-yellow",
+  mensual_web: "border-accent-blue text-accent-blue",
+  unicos_web: "border-accent-orange text-accent-orange",
+  combo_total: "border-black text-black bg-gradient-to-b from-primary via-secondary to-accent-yellow", // premium
+  primary: "border-primary text-primary",
+};
+
+export default function PlanCard({
+  titulo = "Tu Plan",
+  precioMensual,
+  costoUnicos,
+  phrases,
+  selections,
+  color = "primary"
+}) {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [enviadoBanda, setEnviadoBanda] = useState(false);
@@ -15,32 +33,25 @@ export default function PlanCard({ titulo = "Tu Plan", precioMensual, costoUnico
     setEnviadoBanda(false);
   }, [selections]);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const payload = {
       nombre: formData.nombre,
       contacto: formData.contacto,
       redes: formData.redes,
       plan: JSON.stringify({ selections, precioMensual, costoUnicos, frases: phrases })
     };
-
     try {
       const response = await fetch('https://formspree.io/f/movwqvag', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-
       if (response.ok) {
         setEnviado(true);
         setEnviadoBanda(true);
         setMostrarFormulario(false);
         setFormData({ nombre: '', contacto: '', redes: '' });
-        // Oculta el mensaje grande a los 4 segundos, pero deja la banda
         setTimeout(() => setEnviado(false), 4000);
       }
     } catch (err) {
@@ -59,127 +70,160 @@ export default function PlanCard({ titulo = "Tu Plan", precioMensual, costoUnico
     (val) => val !== 0 && val !== false
   );
 
-  if (!hayContenido) {
-    return (
-      <div className="bg-white p-6 rounded-xl shadow-md">
-        <h2 className="text-xl font-bold mb-2">{titulo}</h2>
-        <p className="text-gray-600">Aguardamos tus selecciones para armar tu plan personalizado.</p>
-      </div>
-    );
-  }
-
-  // Clasificar ítems según tipo
-
-  // Mensuales
+  // Resúmenes
   const resumenMensual = [];
   if (selections.posts > 0) resumenMensual.push(`${selections.posts} post${selections.posts > 1 ? 's' : ''}`);
   if (selections.reels > 0) resumenMensual.push(`${selections.reels} reel${selections.reels > 1 ? 's' : ''}`);
   if (selections.historias > 0) resumenMensual.push(`${selections.historias} historia${selections.historias > 1 ? 's' : ''}`);
   if (selections.moderacion) resumenMensual.push("moderación");
 
-  // Únicos
   const resumenUnicos = [];
   if (selections.brandbook) resumenUnicos.push("Brandbook");
-  if (selections.tarjetas) resumenUnicos.push("tarjeta");
+  if (selections.tarjetas) resumenUnicos.push("Tarjetas");
   if (selections.folletos > 0) resumenUnicos.push(`${selections.folletos} folleto${selections.folletos > 1 ? 's' : ''}`);
 
-  // Web
   const resumenWeb = [];
   if (selections.tiendanube) resumenWeb.push("Tiendanube");
   if (selections.pagina) resumenWeb.push("Página personalizada");
 
-  // Return
+  // Clases de color
+  const colorClass = colorStyles[color] || colorStyles.primary;
+
+  // Estilos para el caso negro premium (combo_total)
+  const premium = color === "combo_total";
+
+  if (!hayContenido) {
+    return (
+      <div className="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-gray-200 min-h-[300px] flex flex-col justify-center items-center">
+        <h2 className="text-2xl font-bold mb-2 text-primary font-serif">Tu Plan</h2>
+        <p className="text-gray-500">Aguardamos tus selecciones para armar tu plan personalizado.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md">
-      <h2 className="text-xl font-bold mb-2">{titulo}</h2>
-      {/* Bloques claros de resumen */}
-      {resumenMensual.length > 0 && (
-        <div className="mb-2">
-          <div className="text-sm font-semibold text-gray-700">Lo que vas a recibir cada mes:</div>
-          <div className="text-base text-gray-900">{resumenMensual.join(', ')}</div>
-        </div>
-      )}
-      {resumenUnicos.length > 0 && (
-        <div className="mb-2">
-          <div className="text-sm font-semibold text-gray-700">Extras únicos:</div>
-          <div className="text-base text-gray-900">{resumenUnicos.join(', ')}</div>
-        </div>
-      )}
-      {resumenWeb.length > 0 && (
-        <div className="mb-2">
-          <div className="text-sm font-semibold text-gray-700">Tu página web:</div>
-          <div className="text-base text-gray-900">{resumenWeb.join(', ')}</div>
-        </div>
-      )}
+    <div
+      className={`
+        ${premium ? "bg-black text-white" : "bg-white"}
+        p-8 rounded-3xl shadow-xl border-t-8
+        ${colorClass}
+        min-h-[400px] flex flex-col justify-between
+        hover:shadow-2xl transition-shadow duration-300
+      `}
+      style={{ borderTopWidth: '10px' }}
+    >
+      {/* Título */}
+      <h2 className={`text-2xl font-bold mb-4 font-serif ${premium ? "text-white" : colorClass}`}>{titulo}</h2>
 
+      {/* Resúmenes con badges */}
+      <div className="mb-2 flex flex-col gap-2">
+        {resumenMensual.length > 0 && (
+          <div>
+            <span className={`inline-block bg-accent-blue/10 text-accent-blue text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2`}>Mensual</span>
+            <span className={`text-base ${premium ? "text-white" : "text-gray-800"}`}>{resumenMensual.join(', ')}</span>
+          </div>
+        )}
+        {resumenUnicos.length > 0 && (
+          <div>
+            <span className={`inline-block bg-secondary/10 text-secondary text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2`}>Únicos</span>
+            <span className={`text-base ${premium ? "text-white" : "text-gray-800"}`}>{resumenUnicos.join(', ')}</span>
+          </div>
+        )}
+        {resumenWeb.length > 0 && (
+          <div>
+            <span className={`inline-block bg-accent-yellow/20 text-accent-yellow text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2`}>Web</span>
+            <span className={`text-base ${premium ? "text-white" : "text-gray-800"}`}>{resumenWeb.join(', ')}</span>
+          </div>
+        )}
+      </div>
 
-      {precioMensual > 0 && (
-        <p className="font-semibold">Precio mensual: ${precioMensual.toLocaleString()}</p>
-      )}
-      {costoUnicos > 0 && (
-        <p className="font-semibold mb-2">Costo único: ${costoUnicos.toLocaleString()}</p>
-      )}
+      {/* Precios */}
+      <div className="my-4 flex flex-col gap-1">
+        {precioMensual > 0 && (
+          <div className={`text-lg font-semibold flex items-center gap-2 ${premium ? "text-accent-yellow" : "text-primary"}`}>
+            <span>Precio mensual:</span>
+            <span className="text-2xl font-bold font-serif">${precioMensual.toLocaleString()}</span>
+          </div>
+        )}
+        {costoUnicos > 0 && (
+          <div className={`text-base font-semibold flex items-center gap-2 ${premium ? "text-accent-orange" : "text-secondary"}`}>
+            <span>Costo único:</span>
+            <span className="text-lg font-bold">${costoUnicos.toLocaleString()}</span>
+          </div>
+        )}
+      </div>
 
+      {/* Frases motivadoras */}
+      <div className="mb-2">
+        {phrases.map((frase, idx) => (
+          <p key={idx} className={`text-sm italic ${premium ? "text-gray-200" : "text-gray-600"}`}>{frase}</p>
+        ))}
+      </div>
 
-      {phrases.map((frase, idx) => (
-        <p key={idx} className="text-sm text-gray-700">{frase}</p>
-      ))}
-
+      {/* Botón principal */}
       <button
         onClick={() => setMostrarFormulario(!mostrarFormulario)}
-        className="bg-black hover:bg-gray-800 text-white w-full py-2 rounded mt-4"
+        className={`
+          mt-4 ${premium ? "bg-accent-yellow text-black" : "bg-accent-yellow text-primary"}
+          font-bold px-6 py-3 rounded-full w-full flex items-center justify-center gap-2 shadow-lg
+          hover:bg-accent-blue hover:text-white transition-all duration-300 text-lg group
+        `}
       >
         ¡Quiero este plan!
+        <ArrowRightCircle className="ml-1 group-hover:translate-x-1 transition-transform duration-300" size={28} />
       </button>
 
+      {/* Formulario emergente */}
       {mostrarFormulario && (
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit} className="space-y-4 mt-4 animate-fade-in">
           <input
             type="text"
             name="nombre"
             required
             placeholder="Nombre"
-            className="w-full p-2 rounded text-black"
+            className={`w-full p-2 rounded border ${premium ? "text-black border-accent-yellow" : "text-primary border-primary"}`}
+            value={formData.nombre}
+            onChange={handleChange}
           />
           <input
             type="text"
             name="contacto"
             required
             placeholder="Mail o WhatsApp"
-            className="w-full p-2 rounded text-black"
+            className={`w-full p-2 rounded border ${premium ? "text-black border-accent-yellow" : "text-primary border-primary"}`}
+            value={formData.contacto}
+            onChange={handleChange}
           />
           <input
             type="text"
             name="redes"
             placeholder="Redes sociales (si ya tenés)"
-            className="w-full p-2 rounded text-black"
+            className={`w-full p-2 rounded border ${premium ? "text-black border-accent-yellow" : "text-primary border-primary"}`}
+            value={formData.redes}
+            onChange={handleChange}
           />
-
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md w-full"
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md w-full font-semibold"
           >
             Enviar plan
           </button>
         </form>
       )}
-      {
-        enviado && (
-          <div className="mt-4 bg-green-500 text-white p-2 rounded-md text-center text-base font-semibold transition-all">
-            ¡Gracias por enviar tu plan! Te vamos a contactar pronto.
-          </div>
-        )
-      }
-
-      {
-        enviadoBanda && !enviado && (
-          <div className="w-full border-b-4 border-green-500 text-green-700 text-xs text-center pb-1">
-            Plan enviado correctamente
-          </div>
-        )
-      }
+      {enviado && (
+        <div className="mt-4 bg-green-500 text-bg-light p-2 rounded-md text-center text-base font-semibold transition-all">
+          ¡Gracias por enviar tu plan! Te vamos a contactar pronto.
+        </div>
+      )}
+      {enviadoBanda && !enviado && (
+        <div className="w-full border-b-4 border-green-500 text-green-700 text-xs text-center pb-1">
+          Plan enviado correctamente
+        </div>
+      )}
     </div>
   );
 }
+
+
 
 

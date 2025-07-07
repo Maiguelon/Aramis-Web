@@ -9,6 +9,7 @@ import {
   calcularCostoUnicos
 } from '../utils/PlanFunctions';
 import { generarDescripcionPlan } from '../utils/PhrasesMaker';
+import { getPlanColor } from '../utils/getPlanColor';
 
 export default function PlanCardWrapper({ selections }) {
   const {
@@ -49,12 +50,15 @@ export default function PlanCardWrapper({ selections }) {
     ? generarDescripcionPlan({ nucleo, unicos, pagina, tiendanube, brandbook, tarjetas, folletos })
     : [];
 
+  const color = getPlanColor(selections);
+
   return (
     <PlanCard
       precioMensual={tieneElementosSeleccionados() ? mensualConDescuento : 0}
       costoUnicos={tieneElementosSeleccionados() ? costoUnicos : 0}
       phrases={frases}
       selections={selections}
+      color={color}
     />
   );
 }
