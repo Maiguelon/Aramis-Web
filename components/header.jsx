@@ -8,7 +8,7 @@ export default function Header() {
         <Link href="/">Inicio</Link>
         <Link href="/planes">Planes</Link>
         <Link href="/plan_personalizado">Tu plan a medida</Link>
-        <Link href="/casos_exito">Casos de Éxito</Link>
+        {/* <Link href="/casos_exito">Casos de Éxito</Link> */}
         <Link href="/acerca_de">Nosotros</Link>
       </nav>
     </header>

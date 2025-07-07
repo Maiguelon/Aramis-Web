@@ -25,12 +25,7 @@ const planesPrearmados = [
     nombre: "Redes Estándar",
     descripcion: "Presencia profesional en redes con contenido y planificación.",
     selections: { posts: 6, reels: 2, historias: 12, moderacion: false, brandbook: false, tarjetas: false, folletos: 0, pagina: false, tiendanube: false },
-    extras: [
-      "Optimización de biografía y enlaces",
-      "Planificación y programación de contenido",
-      "Análisis de estadísticas trimestral",
-      "Portadas de historias destacadas"
-    ]
+    extras: []
   },
   {
     nombre: "Identidad Visual",

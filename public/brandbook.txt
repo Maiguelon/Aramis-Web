@@ -1,0 +1,28 @@
+
+ARAmIS – Brandbook Mini
+
+Colores:
+- Primario: #1b2a41  (Azul oscuro)
+- Secundario: #8b2634 (Rojo intenso)
+- Terciarios:
+   - #e9ecf1 (Casi blanco)
+   - #f4b943 (Amarillo acento)
+   - #5c9cd9 (Azul claro)
+
+Tipografías:
+- Principal (títulos, hero, destacados): DM Serif Display
+- Secundaria (textos, párrafos, menús): Lato
+
+Tono de comunicación:
+- Profesional, definido, pero humano y cercano.
+- Enfocado en resultados claros, atención personalizada y creatividad.
+
+Notas:
+- El blanco (#e9ecf1) se usa tanto de fondo como de acento, es tan importante como el rojo secundario.
+- Usar el amarillo y azul claro para acentos, botones o elementos visuales destacados, no como fondo principal.
+- El azul oscuro es el color institucional y debe aparecer en los títulos o fondo de las principales secciones.
+
+Valores de la marca:
+- Cercanía con el cliente
+- Soluciones creativas y personalizadas
+- Resultados concretos
