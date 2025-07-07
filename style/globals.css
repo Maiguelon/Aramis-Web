@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+body {
+  @apply font-sans bg-bg-light text-primary;
+  font-family: 'Lato', sans-serif;
+  background-color: #e9ecf1;
+  color: #1b2a41;
+}
+
+/* Títulos: solo font-family, el color lo podés dejar en tailwind */
+h1, h2, h3, h4, .font-serif, .titulo, .hero-title {
+  font-family: 'DM Serif Display', serif;
+  /* color: #1b2a41; // solo si querés que siempre sea azul oscuro */
+}
