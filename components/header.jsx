@@ -16,18 +16,23 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-primary text-bg-light px-6 py-4 shadow relative z-20">
+    <header className="bg-primary text-bg-light px-6 py-3 shadow-2xl border-b-4 border-accent-yellow relative z-30 sticky top-0">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/img/logoAramis.png"
-            alt="Aramis Logo"
-            width={36}
-            height={36}
-            className="rounded-full"
-          />
+        <Link href="/" className="flex items-center gap-2 h-12 md:h-14"> {/* Ajusta el alto del contenedor */}
+          <div className="relative h-full aspect-square flex-shrink-0">
+            <Image
+              src="/img/logoAramis.png"
+              alt="Aramis Logo"
+              fill
+              style={{ objectFit: "contain" }} // Ocupa todo el cuadrado sin deformar
+              priority
+              sizes="48px"
+              className="rounded-full"
+            />
+          </div>
         </Link>
+
 
         {/* Nav Desktop */}
         <nav className="hidden md:flex space-x-4">

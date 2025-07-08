@@ -1,4 +1,3 @@
-// components/PriceSelector.jsx
 import React, { useState, useEffect } from 'react';
 
 export default function PriceSelectorForm({ onChange }) {
@@ -154,6 +153,7 @@ export default function PriceSelectorForm({ onChange }) {
     </form>
   );
 }
+
 
 
 

@@ -1,6 +1,5 @@
-// components/Footer.jsx
 import { useState } from "react";
-import { FaWhatsapp, FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaWhatsapp, FaFacebook, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 export default function Footer() {
   const [enviado, setEnviado] = useState(false);
@@ -29,17 +28,55 @@ export default function Footer() {
         {/* Contacto */}
         <div>
           <h2 className="text-xl font-bold mb-4">Contacto</h2>
+          {/* WhatsApp */}
           <p className="mb-2 flex items-center gap-2">
             <FaWhatsapp className="text-accent-yellow" />
-            +54 9 11 1234-5678
+            <a
+              href="https://wa.me/5491112345678"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+              aria-label="WhatsApp Aramis Agency"
+            >
+              +54 9 11 1234-5678
+            </a>
           </p>
+          {/* Facebook */}
           <p className="mb-2 flex items-center gap-2">
             <FaFacebook className="text-bg-light" />
-            /aramis.marketing
+            <a
+              href="https://www.facebook.com/people/Aramis-Agency/61576984280512/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+              aria-label="Facebook Aramis Agency"
+            >
+              /Aramis-Agency
+            </a>
           </p>
+          {/* Instagram */}
           <p className="mb-2 flex items-center gap-2">
             <FaInstagram className="text-accent-yellow" />
-            @aramis.digital
+            <a
+              href="https://www.instagram.com/aramisagency/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+              aria-label="Instagram Aramis Agency"
+            >
+              @aramisagency
+            </a>
+          </p>
+          {/* Mail */}
+          <p className="mb-2 flex items-center gap-2">
+            <FaEnvelope className="text-bg-light" />
+            <a
+              href="mailto:hola@aramis.agancy"
+              className="hover:underline"
+              aria-label="Enviar email a Aramis"
+            >
+              hola@aramis.agancy
+            </a>
           </p>
         </div>
 
@@ -88,4 +125,5 @@ export default function Footer() {
     </footer>
   );
 }
+
 

@@ -52,21 +52,23 @@ const planesPrearmados = [
 export default function Planes() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      {/* Header e Intro mejorados */}
-      <div className="text-center mb-10 relative">
-        <h1 className="text-3xl md:text-5xl font-serif font-bold text-primary relative inline-block">
-          <span className="relative z-10">Planes prearmados</span>
-          {/* Barra de acento debajo del título */}
-          <span className="block h-2 w-32 md:w-44 bg-accent-yellow rounded-full absolute left-1/2 -translate-x-1/2 mt-2 -z-10"></span>
-        </h1>
-        <p className="text-lg text-gray-600 mt-7 max-w-2xl mx-auto flex items-center gap-2 justify-center">
-          Elegí el plan que mejor se adapte a tu momento.<br className="hidden md:block" />
-          Todos los precios y combinaciones pueden personalizarse según tu necesidad.
-        </p>
+
+      {/* Hero SOLO */}
+      <div className="relative mb-10 mx-auto max-w-4xl rounded-2xl overflow-hidden">
+        <div className="absolute inset-0 w-full h-full bg-primary/40 backdrop-blur-sm z-0" />
+        <div className="relative z-10 py-10 px-2 text-center">
+          <h1 className="text-3xl md:text-5xl font-serif font-bold text-white inline-block drop-shadow-[0_2px_12px_rgba(0,0,0,0.22)] mb-4">
+            Planes prearmados
+            <span className="block h-2 w-32 md:w-44 bg-accent-yellow rounded-full mx-auto mt-2"></span>
+          </h1>
+          <p className="text-lg mt-7 max-w-2xl mx-auto text-white/90 drop-shadow-[0_2px_8px_rgba(27,42,65,0.22)]">
+            Elegí el plan que mejor se adapte a tu momento.
+          </p>
+        </div>
       </div>
 
       {/* Cards */}
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6 items-start">
         {planesPrearmados.map((plan, idx) => {
           const { precioMensual, costoUnicos } = getPlanData(plan.selections);
           const phrases = [plan.descripcion, ...plan.extras];
@@ -93,13 +95,14 @@ export default function Planes() {
           <Link href="/plan_personalizado">
             <button className="bg-accent-blue hover:bg-accent-yellow text-white hover:text-primary px-8 py-3 rounded-full font-bold text-lg shadow-lg border-2 border-accent-yellow transition-all duration-300 flex items-center gap-2 justify-center group">
               Armá tu plan personalizado
-              {/* Flecha SVG, animada */}
               <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 ml-1 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </button>
           </Link>
         </div>
       </div>
+
     </div>
   );
 }
+
 
