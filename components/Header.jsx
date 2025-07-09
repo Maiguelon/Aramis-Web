@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Inicio", href: "/" },
   { label: "Planes", href: "/planes" },
   { label: "Tu plan a medida", href: "/plan_personalizado" },
+  { label: "Nuestro trabajo", href: "/casos" },
   { label: "Nosotros", href: "/acerca_de" },
 ];
 

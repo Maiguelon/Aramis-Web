@@ -105,8 +105,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA Casos/clientes */}
+      <section className="py-12">
+        <div className="
+    max-w-3xl mx-auto
+    bg-white/90
+    rounded-2xl
+    shadow-lg
+    border-l-4 border-accent-yellow
+    px-7 py-9
+    text-center
+    mb-8
+  ">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-3">
+            Conocé nuestros casos
+          </h2>
+          <p className="mb-6 text-primary text-lg">
+            Mirá algunas de las marcas y profesionales que ya confían en Aramís.<br />
+            Inspirate o descubrí cómo podemos ayudarte también.
+          </p>
+          <a
+            href="/casos"
+            className="
+        inline-block
+        bg-accent-blue hover:bg-accent-yellow
+        text-white hover:text-primary
+        px-8 py-3 rounded-full
+        font-bold text-lg shadow-lg
+        border-2 border-accent-yellow
+        transition-all duration-300
+      "
+          >
+            Ver casos y clientes
+          </a>
+        </div>
+      </section>
+
+
       {/* CTA final */}
-      <section className="py-16 text-center">
+      <section className="py-0 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
