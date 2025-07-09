@@ -5,19 +5,19 @@ const equipo = [
     nombre: 'Eric Esquivel',
     rol: 'Lic. en Comercialización',
     desc: 'Apasionado por el marketing y la estrategia comercial, Eric es quien conecta la agencia con cada cliente, asegurando un servicio humano, atento y siempre enfocado en los resultados.',
-    foto: '/img/eric.jpg',
+    foto: '/img/equipo/eric.jpg',
   },
   {
     nombre: 'Eliana Carretero',
     rol: 'Profesora de Artes Visuales y Diseñadora',
     desc: 'Eliana aporta creatividad, mirada estética y experiencia en artes visuales. Da forma a la identidad visual de cada marca, con diseños originales y pensados para destacar.',
-    foto: '/img/eliana.jpg',
+    foto: '/img/equipo/eliana.jpg',
   },
   {
     nombre: 'Miguel Carretero',
     rol: 'Lic. en Comercialización y Programador',
     desc: 'Miguel combina visión comercial y técnica, desarrollando soluciones digitales a medida. Es el encargado de llevar las ideas al mundo web, siempre buscando innovar.',
-    foto: '/img/miguel.jpg',
+    foto: '/img/equipo/miguel.jpg',
   }
 ];
 

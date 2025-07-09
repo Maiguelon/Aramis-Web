@@ -22,7 +22,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2 h-12 md:h-14"> {/* Ajusta el alto del contenedor */}
           <div className="relative h-full aspect-square flex-shrink-0">
             <Image
-              src="/img/logoAramis.png"
+              src="/img/general/logoAramis.png"
               alt="Aramis Logo"
               fill
               style={{ objectFit: "contain" }} // Ocupa todo el cuadrado sin deformar

@@ -1,0 +1,76 @@
+[
+  {
+    "rubro": "Salud",
+    "casos": [
+      {
+        "nombre": "Lic. Walter Villegas, nutricionista",
+        "logo": "/img/clientes/walter-logo.png",
+        "descripcion": "Acompañamos a Walter en la creación de su identidad digital y estrategias de comunicación para llegar a nuevos pacientes.",
+        "bullets": [
+          "Identidad visual desde cero.",
+          "Estrategia de contenidos para Instagram.",
+          "Diseño de materiales digitales."
+        ],
+        "links": [
+          { "label": "Instagram", "url": "https://instagram.com/waltervillegas" },
+          { "label": "WhatsApp", "url": "https://wa.me/5493885213695" },
+          { "label": "Teléfono", "url": "tel:+5493885213695" }
+        ]
+      },
+      {
+        "nombre": "DYMEC - Medicina estética y dermatología (Dr. Cáceres)",
+        "logo": "/img/clientes/dymec-logo.png",
+        "descripcion": "Renovación de la presencia digital de DYMEC y campañas para captar nuevos pacientes.",
+        "bullets": [
+          "Rediseño de logo y branding.",
+          "Campañas en redes sociales.",
+          "Diseño de flyers y piezas informativas."
+        ],
+        "links": [
+          { "label": "Instagram", "url": "https://instagram.com/dymec" },
+          { "label": "WhatsApp", "url": "https://wa.me/543884454444" },
+          { "label": "Teléfono", "url": "tel:3884454444" }
+        ]
+      }
+    ]
+  },
+  {
+    "rubro": "Importadora",
+    "casos": [
+      {
+        "nombre": "Bee Comex - Importadora",
+        "logo": "/img/clientes/beecomex-logo.png",
+        "descripcion": "Desarrollamos su marca y presencia online para posicionar a Bee Comex como importadora líder.",
+        "bullets": [
+          "Identidad visual profesional.",
+          "Diseño de sitio institucional.",
+          "Asesoría en comunicación B2B."
+        ],
+        "links": [
+          { "label": "Instagram", "url": "https://instagram.com/beecomex" },
+          { "label": "Sitio web", "url": "https://beecomex.com" }
+        ]
+      }
+    ]
+  },
+  {
+    "rubro": "Educación / ONG",
+    "casos": [
+      {
+        "nombre": "AURA - Asociación Civil",
+        "logo": "/img/clientes/aura-logo.png",
+        "descripcion": "Apoyamos a AURA en la difusión de su misión de recolectar material de estudio y promover el arte en niños.",
+        "bullets": [
+          "Comunicación institucional y en redes.",
+          "Campañas visuales para donaciones.",
+          "Diseño de piezas para eventos benéficos."
+        ],
+        "links": [
+          { "label": "Instagram", "url": "https://instagram.com/aura_ac" },
+          { "label": "TikTok", "url": "https://tiktok.com/@aura_ac" }
+        ]
+      }
+    ]
+  }
+]
+
