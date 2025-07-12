@@ -13,21 +13,21 @@ export default function Home() {
       desc: "Contenido profesional para destacar tu marca.",
       fraseOverlay: "Grabamos, preparamos y programamos tu contenido profesionalmente.",
       icon: <Monitor size={26} className="text-accent-blue drop-shadow-md mt-1" />,
-      img: "/img/stock/redes.jpg",
+      img: "/img/stock/redes.webp",
     },
     {
       titulo: "Identidad Visual",
       desc: "Diseños claros y memorables que conectan.",
       fraseOverlay: "Diseñamos marcas que conectan y diferencian.",
       icon: <Palette size={26} className="text-secondary drop-shadow-md mt-1" />, // agregamos drop-shadow para que resalte
-      img: "/img/stock/identidad.jpg",
+      img: "/img/stock/identidad.webp",
     },
     {
       titulo: "Páginas Web",
       desc: "Tu negocio en línea con estilo y eficacia.",
       fraseOverlay: "Creamos sitios web modernos, listos para crecer.",
       icon: <Globe size={26} className="text-accent-yellow drop-shadow-md mt-1" />,
-      img: "/img/stock/web.jpg",
+      img: "/img/stock/web.webp",
     },
   ];
 
