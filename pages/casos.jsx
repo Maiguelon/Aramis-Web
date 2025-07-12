@@ -15,7 +15,7 @@ export default function Casos() {
         py-8
       ">
         <h1 className="text-4xl font-serif font-bold text-primary mb-3">
-          Marcas y profesionales que confían en nosotros
+          Quienes ya confían en nosotros
         </h1>
         <p className="text-lg text-secondary">
           Mirá algunos de los casos con los que trabajamos en diferentes rubros y realidades.

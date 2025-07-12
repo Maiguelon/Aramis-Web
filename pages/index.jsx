@@ -11,17 +11,23 @@ export default function Home() {
     {
       titulo: "Redes Sociales",
       desc: "Contenido profesional para destacar tu marca.",
-      icon: "Monitor",
+      fraseOverlay: "Grabamos, preparamos y programamos tu contenido profesionalmente.",
+      icon: <Monitor size={26} className="text-accent-blue drop-shadow-md mt-1" />,
+      img: "/img/stock/redes.jpg",
     },
     {
       titulo: "Identidad Visual",
       desc: "Diseños claros y memorables que conectan.",
-      icon: "Palette",
+      fraseOverlay: "Diseñamos marcas que conectan y diferencian.",
+      icon: <Palette size={26} className="text-secondary drop-shadow-md mt-1" />, // agregamos drop-shadow para que resalte
+      img: "/img/stock/identidad.jpg",
     },
     {
       titulo: "Páginas Web",
       desc: "Tu negocio en línea con estilo y eficacia.",
-      icon: "Globe",
+      fraseOverlay: "Creamos sitios web modernos, listos para crecer.",
+      icon: <Globe size={26} className="text-accent-yellow drop-shadow-md mt-1" />,
+      img: "/img/stock/web.jpg",
     },
   ];
 
@@ -59,29 +65,42 @@ export default function Home() {
 
 
       {/* Bloques animados de servicios */}
-      <section className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8 text-center">
+      <section className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
         {servicios.map((serv, idx) => (
-          <motion.div
+          <div
             key={serv.titulo}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1 + 0.2, duration: 0.6, type: "spring" }}
-            viewport={{ once: true }}
-            className="bg-white rounded-3xl shadow-lg p-8 flex flex-col items-center
-              border-b-4
-              hover:-translate-y-2 hover:scale-105 hover:shadow-2xl transition-all duration-300
-              hover:border-accent-yellow
-              border-transparent"
+            className="relative rounded-3xl overflow-hidden shadow-lg group h-80 flex items-end border-b-4 border-transparent hover:border-accent-yellow transition-all duration-300"
           >
-            {getIcon(serv.icon)}
-            <h3 className="text-xl font-bold mb-2 text-secondary">{serv.titulo}</h3>
-            <p className="text-gray-600">{serv.desc}</p>
-          </motion.div>
+            {/* Imagen de fondo */}
+            <img
+              src={serv.img}
+              alt={serv.titulo}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            {/* Overlay al hover */}
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/80 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-30 px-6">
+              <p className="text-white text-lg font-semibold text-center drop-shadow-lg">{serv.fraseOverlay}</p>
+            </div>
+            {/* Degradé abajo + contenido */}
+            <div className="relative z-10 w-full h-full flex flex-col justify-end">
+              {/* Degradé en el fondo abajo (más oscuro) */}
+              <div className="absolute bottom-0 left-0 w-full h-2/5 bg-gradient-to-t from-black/85 via-black/60 to-transparent z-10"></div>
+              {/* Contenido sobre el degradé */}
+              <div className="relative z-20 p-6 pb-5 text-left flex flex-col gap-1">
+                <div className="flex items-center gap-2 mb-2">
+                  {serv.icon}
+                  <h3 className="text-2xl font-bold text-white font-serif drop-shadow">{serv.titulo}</h3>
+                </div>
+                <p className="text-white/90 text-base drop-shadow">{serv.desc}</p>
+              </div>
+            </div>
+          </div>
         ))}
       </section>
 
+
       {/* ¿Por qué elegirnos? */}
-      <section className="py-10">
+      {/* <section className="py-10">
         <div className="max-w-xl mx-auto bg-white/95 rounded-3xl shadow-lg border-l-4 border-accent-yellow px-7 py-7">
           <h2 className="text-2xl font-serif font-bold mb-3 text-primary text-left">
             ¿Por qué elegir Aramis?
@@ -103,7 +122,7 @@ export default function Home() {
             ))}
           </ul>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Casos/clientes */}
       <section className="py-12">
@@ -117,30 +136,50 @@ export default function Home() {
     text-center
     mb-8
   ">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-3">
-            Conocé nuestros casos
-          </h2>
-          <p className="mb-6 text-primary text-lg">
-            Mirá algunas de las marcas y profesionales que ya confían en Aramís.<br />
-            Inspirate o descubrí cómo podemos ayudarte también.
-          </p>
-          <a
-            href="/casos"
-            className="
-        inline-block
-        bg-accent-blue hover:bg-accent-yellow
-        text-white hover:text-primary
-        px-8 py-3 rounded-full
-        font-bold text-lg shadow-lg
-        border-2 border-accent-yellow
-        transition-all duration-300
-      "
-          >
-            Ver casos y clientes
-          </a>
+          {/* Título de clientes */}
+          <h3 className="text-lg font-bold text-primary mb-2 tracking-wide">
+            Nuestros clientes
+          </h3>
+          {/* Cinta de logos */}
+          <div className="flex flex-wrap justify-center items-center gap-8 mb-8">
+            <img src="/img/clientes/aura-logo.png" alt="AURA" className="h-12 w-auto object-contain" />
+            <img src="/img/clientes/beecomex-logo.png" alt="BeeComex" className="h-12 w-auto object-contain" />
+            <img src="/img/clientes/dymec-logo.png" alt="DYmec" className="h-12 w-auto object-contain" />
+            <img src="/img/clientes/walter-logo.png" alt="Walter Villegas" className="h-12 w-auto object-contain" />
+            {/* <img src="/img/clientes/ferreteria-logo.png" alt="Ferretería" className="h-12 w-auto object-contain" /> */}
+          </div>
+
+          {/* Collage con overlay centrado */}
+          <div className="relative w-full rounded-xl overflow-hidden shadow-md min-h-[240px] mb-2">
+            {/* Imagen de collage */}
+            <img
+              src="/img/clientes/collage.png"
+              alt="Collage de trabajos de Aramís"
+              className="w-full h-64 object-cover"
+            />
+            {/* Overlay de título + botón */}
+            <div className="absolute inset-0 flex flex-col justify-center items-center bg-black/30">
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-white drop-shadow-lg mb-4">
+                Conocé nuestro trabajo
+              </h2>
+              <a
+                href="/casos"
+                className="
+            inline-block
+            bg-accent-blue hover:bg-accent-yellow
+            text-white hover:text-primary
+            px-8 py-3 rounded-full
+            font-bold text-lg shadow-lg
+            border-2 border-accent-yellow
+            transition-all duration-300
+          "
+              >
+                Ver casos y clientes
+              </a>
+            </div>
+          </div>
         </div>
       </section>
-
 
       {/* CTA final */}
       <section className="py-0 text-center">

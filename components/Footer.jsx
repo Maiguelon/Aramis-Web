@@ -32,13 +32,13 @@ export default function Footer() {
           <p className="mb-2 flex items-center gap-2">
             <FaWhatsapp className="text-accent-yellow" />
             <a
-              href="https://wa.me/5491112345678"
+              href="https://wa.me/5493812137220"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
               aria-label="WhatsApp Aramis Agency"
             >
-              +54 9 11 1234-5678
+              +54 9 381 2137-220
             </a>
           </p>
           {/* Facebook */}

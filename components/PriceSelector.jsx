@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
+// Hook para detectar si es mobile
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640); // sm=640px
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
+
 export default function PriceSelectorForm({ onChange }) {
   const [form, setForm] = useState({
     posts: 0,
@@ -12,6 +24,8 @@ export default function PriceSelectorForm({ onChange }) {
     tiendanube: false,
     pagina: false,
   });
+
+  const isMobile = useIsMobile();
 
   // Cambia estilos de inputs y agrega microanimaciones/focus
   const baseInput =
@@ -48,39 +62,75 @@ export default function PriceSelectorForm({ onChange }) {
         <h3 className="text-lg font-serif font-bold mb-3 text-secondary">Elementos mensuales</h3>
         <div className="flex justify-between items-center mb-2">
           <label className={baseLabel}>Posts</label>
-          <input
-            type="number"
-            min={0}
-            max={12}
-            step={2}
-            value={form.posts}
-            onChange={(e) => handleChange('posts', Math.max(0, Math.min(12, parseInt(e.target.value) || 0)))}
-            className={baseInput}
-          />
+          {isMobile ? (
+            <select
+              value={form.posts}
+              onChange={(e) => handleChange('posts', Number(e.target.value))}
+              className={baseInput + " pr-7"}
+            >
+              {[0, 2, 4, 6, 8, 10, 12].map(n => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type="number"
+              min={0}
+              max={12}
+              step={2}
+              value={form.posts}
+              onChange={(e) => handleChange('posts', Math.max(0, Math.min(12, parseInt(e.target.value) || 0)))}
+              className={baseInput}
+            />
+          )}
         </div>
         <div className="flex justify-between items-center mb-2">
           <label className={baseLabel}>Reels</label>
-          <input
-            type="number"
-            min={0}
-            max={6}
-            step={1}
-            value={form.reels}
-            onChange={(e) => handleChange('reels', Math.max(0, Math.min(6, parseInt(e.target.value) || 0)))}
-            className={baseInput}
-          />
+          {isMobile ? (
+            <select
+              value={form.reels}
+              onChange={(e) => handleChange('reels', Number(e.target.value))}
+              className={baseInput + " pr-7"}
+            >
+              {[0, 1, 2, 3, 4, 5, 6].map(n => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type="number"
+              min={0}
+              max={6}
+              step={1}
+              value={form.reels}
+              onChange={(e) => handleChange('reels', Math.max(0, Math.min(6, parseInt(e.target.value) || 0)))}
+              className={baseInput}
+            />
+          )}
         </div>
         <div className="flex justify-between items-center mb-2">
           <label className={baseLabel}>Historias</label>
-          <input
-            type="number"
-            min={0}
-            max={20}
-            step={4}
-            value={form.historias}
-            onChange={(e) => handleChange('historias', Math.max(0, Math.min(20, parseInt(e.target.value) || 0)))}
-            className={baseInput}
-          />
+          {isMobile ? (
+            <select
+              value={form.historias}
+              onChange={(e) => handleChange('historias', Number(e.target.value))}
+              className={baseInput + " pr-7"}
+            >
+              {[0, 4, 8, 12, 16, 20].map(n => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type="number"
+              min={0}
+              max={20}
+              step={4}
+              value={form.historias}
+              onChange={(e) => handleChange('historias', Math.max(0, Math.min(20, parseInt(e.target.value) || 0)))}
+              className={baseInput}
+            />
+          )}
         </div>
         <div className="flex justify-between items-center mb-2">
           <label className={baseLabel}>Moderación</label>
@@ -116,15 +166,27 @@ export default function PriceSelectorForm({ onChange }) {
         </div>
         <div className="flex justify-between items-center mb-2">
           <label className={baseLabel}>Folletos</label>
-          <input
-            type="number"
-            min={0}
-            max={2}
-            step={1}
-            value={form.folletos}
-            onChange={(e) => handleChange('folletos', Math.max(0, Math.min(2, parseInt(e.target.value) || 0)))}
-            className={baseInput}
-          />
+          {isMobile ? (
+            <select
+              value={form.folletos}
+              onChange={(e) => handleChange('folletos', Number(e.target.value))}
+              className={baseInput + " pr-7"}
+            >
+              {[0, 1, 2].map(n => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
+          ) : (
+            <input
+              type="number"
+              min={0}
+              max={2}
+              step={1}
+              value={form.folletos}
+              onChange={(e) => handleChange('folletos', Math.max(0, Math.min(2, parseInt(e.target.value) || 0)))}
+              className={baseInput}
+            />
+          )}
         </div>
       </section>
 
@@ -153,7 +215,3 @@ export default function PriceSelectorForm({ onChange }) {
     </form>
   );
 }
-
-
-
-

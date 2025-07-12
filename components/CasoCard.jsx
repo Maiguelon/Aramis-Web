@@ -2,12 +2,18 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Instagram, Globe, Phone } from "lucide-react";
-import { FaWhatsapp, FaTiktok } from "react-icons/fa";
+import { FaFacebook, FaWhatsapp, FaTiktok } from "react-icons/fa";
 
 const iconMap = {
     Instagram: (hovered) => (
         <Instagram
             className={`inline mr-1 transition-colors duration-200 ${hovered ? "text-primary" : "text-red-500"}`}
+            size={17}
+        />
+    ),
+    Facebook: (hovered) => (
+        <FaFacebook
+            className={`inline mr-1 transition-colors duration-200 ${hovered ? "text-primary" : "text-accent-blue"}`}
             size={17}
         />
     ),
