@@ -142,7 +142,7 @@ export default function Home() {
           </h3>
           {/* Cinta de logos */}
           <div className="flex flex-wrap justify-center items-center gap-8 mb-4">
-            <img src="/img/clientes/aura-logo.png" alt="AURA" className="h-14 w-auto object-contain" />
+            <img src="/img/clientes/aura-logo.png" alt="AURA" className="h-20 w-auto object-contain scale-110" />
             <img src="/img/clientes/beecomex-logo.png" alt="BeeComex" className="h-14 w-auto object-contain" />
             <img src="/img/clientes/dymec-logo.png" alt="DYmec" className="h-14 w-auto object-contain" />
             <img src="/img/clientes/walter-logo.png" alt="Walter Villegas" className="h-14 w-auto object-contain" />
@@ -158,7 +158,7 @@ export default function Home() {
             className="w-full h-64 object-cover"
           />
           {/* Overlay de título + botón */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center bg-black/50">
+          <div className="absolute inset-0 flex flex-col justify-center items-center bg-transparent">
             <h2 className="text-3xl md:text-4xl font-serif font-extrabold text-white drop-shadow-lg mb-4 px-4 text-center"
               style={{
                 textShadow: "0 3px 18px #000, 0 1px 2px #000",
