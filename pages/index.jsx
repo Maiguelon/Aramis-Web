@@ -158,7 +158,7 @@ export default function Home() {
             className="w-full h-64 object-cover"
           />
           {/* Overlay de título + botón */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center bg-transparent">
+          <div className="absolute inset-0 flex flex-col justify-center items-center">
             <h2 className="text-3xl md:text-4xl font-serif font-extrabold text-white drop-shadow-lg mb-4 px-4 text-center"
               style={{
                 textShadow: "0 3px 18px #000, 0 1px 2px #000",
