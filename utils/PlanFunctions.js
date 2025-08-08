@@ -27,22 +27,28 @@ export function calcularUnicosPaginas({ tiendanube = 0, pagina = 0 }) {
 // NUEVA LÓGICA AJUSTADA:
 export function calcularMensual(nucleo) {
   const fee = servicios.fee.precio_unitario;
-  const limiteInferior = servicios.limite_inferior.precio_unitario;
-  const limiteMedio = servicios.limite_medio.precio_unitario;
-  const limiteSuperior = servicios.limite_superior.precio_unitario;
+  const a = servicios.limite_inferior.precio_unitario;
+  const b = servicios.limite_medio.precio_unitario;
+  const c = servicios.limite_superior.precio_unitario;
 
-  if (nucleo === 0) return 0; 
+  const dMedio = 0.9; // -10%
+  const dAlto  = 0.8; // -20%
 
-  if (nucleo < limiteInferior) {
+  // 👇 nuevo: si no hay núcleo (no hay mensuales), NO hay fee mensual
+  if (nucleo <= 0) return 0;
+
+  if (nucleo <= a) {
     return fee + nucleo;
-  } else if (nucleo >= limiteInferior && nucleo < limiteMedio) {
-    return fee + (limiteInferior + (nucleo - limiteInferior) * 0.85); // 15% descuento
-  } else if (nucleo >= limiteMedio && nucleo < limiteSuperior) {
-    return fee + (limiteMedio + (nucleo - limiteMedio) * 0.85); // 15% descuento también
-  } else {
-    return fee + (limiteMedio + (limiteSuperior - limiteMedio) * 0.85 + (nucleo - limiteSuperior) * 0.75); // 25% descuento
   }
+  if (nucleo <= b) {
+    return fee + a + (nucleo - a) * dMedio;
+  }
+  if (nucleo <= c) {
+    return fee + a + (b - a) * dMedio + (nucleo - b) * dMedio;
+  }
+  return fee + a + (b - a) * dMedio + (c - b) * dMedio + (nucleo - c) * dAlto;
 }
+
 
 // Las demás funciones quedan igual.
 export function aplicarDescuentoMensual(mensual, { tiendanube = 0, pagina = 0 }) {

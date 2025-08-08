@@ -71,7 +71,7 @@ export default function Footer() {
           <p className="mb-2 flex items-center gap-2">
             <FaEnvelope className="text-bg-light" />
             <a
-              href="mailto:hola@aramis.agancy"
+              href="mailto:hola@aramis.agency"
               className="hover:underline"
               aria-label="Enviar email a Aramis"
             >
