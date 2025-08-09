@@ -6,8 +6,8 @@
 
 body {
   @apply font-sans;
-  background: linear-gradient(135deg, #1b2a41 0%, #e9ecf1 70%, #5c9cd9 100%);
-  color: #1b2a41;
+  background-color: #1b2a41;
+  color: #ffffff;
 }
 
 /* Títulos: solo font-family, el color lo podés dejar en tailwind */
