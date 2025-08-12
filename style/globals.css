@@ -6,7 +6,7 @@
 
 body {
   @apply font-sans;
-  background-color: #1b2a41;
+  background-color: white; /* o transparente */
   color: #ffffff;
 }
 

@@ -38,8 +38,8 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
 
       {/* Hero minimalista mejorado */}
-      <section className="bg-lightprimary text-bg-light flex flex-col items-center text-center min-h-[calc(100vh-80px)] pt-36 pb-8 px-4">
-       
+      <section className="bg-primary text-bg-light flex flex-col items-center text-center min-h-[calc(100vh-80px)] pt-36 pb-8 px-4">
+
         {/* Logo */}
         <div className="relative w-full max-w-[260px] md:max-w-[300px] mb-1">
           <Image
@@ -77,50 +77,53 @@ export default function Home() {
 
 
       {/* Bloques de servicios */}
-      <section className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
-        {servicios.map((serv) => (
-          <div
-            key={serv.titulo}
-            className="relative rounded-3xl overflow-hidden shadow-lg group h-80 flex items-end border-b-4 border-transparent hover:border-accent-yellow transition-all duration-300"
-          >
-            {/* Imagen de fondo con next/image */}
-            <div className="absolute inset-0 -z-10">
-              <Image
-                src={serv.img}
-                alt={serv.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                style={{ objectFit: "cover" }}
-                priority
-              />
-            </div>
+      <section className="bg-bg-light">
+        <div className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
+          {servicios.map((serv) => (
+            <div
+              key={serv.titulo}
+              className="relative rounded-3xl overflow-hidden shadow-lg group h-80 flex items-end border-b-4 border-transparent hover:border-accent-yellow transition-all duration-300"
+            >
+              {/* Imagen de fondo */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={serv.img}
+                  alt={serv.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              </div>
 
-            {/* Overlay al hover */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/80 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-30 px-6">
-              <p className="text-white text-lg font-semibold text-center drop-shadow-lg">
-                {serv.fraseOverlay}
-              </p>
-            </div>
+              {/* Overlay al hover */}
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/80 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 z-30 px-6">
+                <p className="text-white text-lg font-semibold text-center drop-shadow-lg">
+                  {serv.fraseOverlay}
+                </p>
+              </div>
 
-            {/* Degradé + contenido */}
-            <div className="relative z-10 w-full h-full flex flex-col justify-end">
-              <div className="absolute bottom-0 left-0 w-full h-2/5 bg-gradient-to-t from-black/85 via-black/60 to-transparent z-10"></div>
-              <div className="relative z-20 p-6 pb-5 text-left flex flex-col gap-1">
-                <div className="flex items-center gap-2 mb-2">
-                  {serv.icon}
-                  <h3 className="text-2xl font-bold text-white font-serif drop-shadow">
-                    {serv.titulo}
-                  </h3>
+              {/* Degradé + contenido */}
+              <div className="relative z-20 w-full h-full flex flex-col justify-end">
+                <div className="absolute bottom-0 left-0 w-full h-2/5 bg-gradient-to-t from-black/85 via-black/60 to-transparent z-10"></div>
+                <div className="relative z-20 p-6 pb-5 text-left flex flex-col gap-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    {serv.icon}
+                    <h3 className="text-2xl font-bold text-white font-serif drop-shadow">
+                      {serv.titulo}
+                    </h3>
+                  </div>
+                  <p className="text-white/90 text-base drop-shadow">{serv.desc}</p>
                 </div>
-                <p className="text-white/90 text-base drop-shadow">{serv.desc}</p>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
+
       {/* CTA Casos/clientes */}
-      <section className="py-12">
+      <section className="py-12 bg-gradient-to-b from-bg-light to-primary">
         <div
           className="
             max-w-3xl mx-auto bg-white/90 rounded-2xl shadow-lg
@@ -171,7 +174,7 @@ export default function Home() {
       </section>
 
       {/* CTA final */}
-      <section className="py-0 text-center">
+      <section className="py-0 text-center bg-primary">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
