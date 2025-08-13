@@ -18,7 +18,7 @@
    const pathname = usePathname();
  
    return (
-     <header className="bg-primary text-bg-light px-6 py-3 shadow-2xl border-b-4 border-accent-yellow relative z-30 sticky top-0">
+    <header className="bg-primary text-bg-light px-6 py-3 shadow-2xl border-b-4 border-accent-yellow sticky top-0 z-50">
        <div className="max-w-7xl mx-auto flex justify-between items-center">
          {/* Logo */}
          <Link href="/" className="flex items-center gap-2 h-12 md:h-14"> {/* Ajusta el alto del contenedor */}
@@ -185,7 +185,7 @@ export default function Footer() {
               className="hover:underline"
               aria-label="Enviar email a Aramis"
             >
-              hola@aramis.agancy
+              hola@aramis.agency
             </a>
           </p>
         </div>

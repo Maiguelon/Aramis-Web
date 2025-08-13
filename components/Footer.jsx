@@ -75,7 +75,7 @@ export default function Footer() {
               className="hover:underline"
               aria-label="Enviar email a Aramis"
             >
-              hola@aramis.agancy
+              hola@aramis.agency
             </a>
           </p>
         </div>
