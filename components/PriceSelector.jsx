@@ -29,7 +29,7 @@ export default function PriceSelectorForm({ onChange }) {
 
   // Cambia estilos de inputs y agrega microanimaciones/focus
   const baseInput =
-    "border rounded-xl px-3 py-2 w-20 text-right shadow focus:ring-2 focus:ring-accent-yellow focus:border-accent-yellow transition-all";
+    "text-primary border rounded-xl px-3 py-2 w-20 text-right shadow focus:ring-2 focus:ring-accent-yellow focus:border-accent-yellow transition-all";
   const baseLabel =
     "font-semibold text-primary hover:text-accent-blue transition-all duration-200 cursor-pointer";
   const baseSection =
