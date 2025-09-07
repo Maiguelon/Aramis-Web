@@ -43,7 +43,7 @@ export default function Home() {
         {/* Logo */}
         <div className="relative w-full max-w-[260px] md:max-w-[300px] mb-1">
           <Image
-            src="/img/stock/logoAramis.png"
+            src="/img/stock/logoAramis.svg"
             alt="Aramis Logo"
             width={300}
             height={300}
@@ -160,11 +160,11 @@ export default function Home() {
             <ul className="grid grid-cols-2 gap-x-8 gap-y-6 justify-items-center
                md:flex md:flex-nowrap md:justify-between md:gap-8">
               {[
-                { src: "/img/clientes/aura-logo.png", alt: "AURA", scale: "scale-[1.18] md:scale-[1.22]" },
-                { src: "/img/clientes/beecomex-logo.png", alt: "Bee Comex" },
-                { src: "/img/clientes/dymec-logo.png", alt: "DYMEC" },
-                { src: "/img/clientes/walter-logo.png", alt: "Walter Villegas", scale: "scale-[1.15] md:scale-[1.2]" },
-                { src: "/img/clientes/estudio-logo.png", alt: "Estudio de Abogacía", scale: "scale-[1.18] md:scale-[1.22]" }, // <- filename corregido
+                { src: "/img/clientes/aura-logo.svg", alt: "AURA", scale: "scale-[1.18] md:scale-[1.22]" },
+                { src: "/img/clientes/beecomex-logo.svg", alt: "Bee Comex" },
+                { src: "/img/clientes/dymec-logo.svg", alt: "DYMEC" },
+                { src: "/img/clientes/walter-logo.svg", alt: "Walter Villegas", scale: "scale-[1.15] md:scale-[1.2]" },
+                { src: "/img/clientes/estudio-logo.svg", alt: "Estudio de Abogacía", scale: "scale-[1.18] md:scale-[1.22]" }, // <- filename corregido
               ].map(({ src, alt, scale }) => (
                 <li key={alt} className="relative h-14 md:h-16 w-full md:w-44">
                   <Image

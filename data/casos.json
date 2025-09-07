@@ -4,7 +4,7 @@
     "casos": [
       {
         "nombre": "Lic. Walter Villegas, nutricionista",
-        "logo": "/img/clientes/walter-logo.png",
+        "logo": "/img/clientes/walter-logo.svg",
         "descripcion": "Acompañamos a Walter en la creación de su identidad digital y estrategias de comunicación para llegar a nuevos pacientes.",
         "bullets": [
           "Identidad visual desde cero.",
@@ -18,7 +18,7 @@
       },
       {
         "nombre": "DYMEC - Medicina estética y dermatología",
-        "logo": "/img/clientes/dymec-logo.png",
+        "logo": "/img/clientes/dymec-logo.svg",
         "descripcion": "Renovación de la presencia digital de DYMEC y campañas para captar nuevos pacientes.",
         "bullets": [
           "Rediseño de logo y branding.",
@@ -37,7 +37,7 @@
     "casos": [
       {
         "nombre": "Bee Comex - Importadora",
-        "logo": "/img/clientes/beecomex-logo.png",
+        "logo": "/img/clientes/beecomex-logo.svg",
         "descripcion": "Desarrollamos su marca y presencia online para posicionar a Bee Comex como importadora líder.",
         "bullets": [
           "Identidad visual profesional.",
@@ -55,7 +55,7 @@
     "casos": [
       {
         "nombre": "AURA - Asociación Civil",
-        "logo": "/img/clientes/aura-logo.png",
+        "logo": "/img/clientes/aura-logo.svg",
         "descripcion": "Apoyamos a AURA en la difusión de su misión de recolectar material de estudio y promover el arte en niños.",
         "bullets": [
           "Comunicación institucional y en redes.",
