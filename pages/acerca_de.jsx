@@ -34,7 +34,7 @@ export default function Nosotros() {
       {/* Intro */}
       <div className="max-w-2xl mx-auto mb-16 bg-white/10 p-6 rounded-2xl shadow-xl border-l-4 border-accent-yellow backdrop-blur-md">
         <p className="text-lg text-center text-bg-light">
-          En <span className="font-bold text-accent-yellow">Aramis</span> genuinamente nos encanta ver cómo le va mejor a nuestros clientes. <br />
+          En <span className="font-bold text-accent-yellow">Aramis</span> genuinamente nos encanta ver cómo nuestro trabajo le simplifica la vida a nuestros clientes. <br />
           Trabajamos de manera cercana, transparente y orientada a resultados.
         </p>
       </div>
