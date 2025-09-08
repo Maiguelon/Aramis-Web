@@ -21,35 +21,37 @@ export default function PlanPersonalizado() {
   const animKey = `${tieneMensual ? 1 : 0}-${tieneUnico ? 1 : 0}-${tieneWeb ? 1 : 0}`;
 
   return (
+  <>
+    {/* HERO SEPARADO */}
+<section className="text-white max-w-7xl mx-auto pt-6 pb-4 md:pt-12 md:pb-6">
+  <div className="md:pl-20 px-6">
+    <h1 className="text-3xl md:text-4xl font-serif font-bold mb-2 text-left">
+      Armá tu plan personalizado
+    </h1>
+    <p className="text-lg text-white/90 md:text-base text-left">
+      Tus necesidades, tu plan.
+    </p>
+  </div>
+</section>
+
+
+    {/* CONTENEDOR PRINCIPAL */}
     <div className="min-h-[calc(100vh-64px)] w-full flex items-center justify-center">
-    <div className="w-full max-w-6xl mx-auto p-2 md:py-8">
-      
-      {/* Título y subfrase alineados a la izquierda en desktop */}
-      <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-serif font-bold text-white text-left mb-2">
-          Armá tu plan personalizado
-        </h1>
-        <p className="text-lg text-white/90 text-left md:text-base">
-          Tus necesidades, tu plan.
-        </p>
+      <div className="w-full max-w-6xl mx-auto p-2 md:py-8">
 
-          {/* Bloque principal: Form + Card */}
-        </div>
-
-
-
-        {/* Bloque principal */}
-        <div className="
-      rounded-3xl 
-      bg-white/90 
-      shadow-2xl 
-      border border-bg-light 
-      backdrop-blur-sm 
-      p-4 md:p-10 
-      flex flex-col md:flex-row gap-8 
-      md:items-stretch
-    ">
-          {/* Formulario a la izquierda, ahora sin el título */}
+        <div
+          className="
+            rounded-3xl 
+            bg-white/90 
+            shadow-2xl 
+            border border-bg-light 
+            backdrop-blur-sm 
+            p-4 md:p-10 
+            flex flex-col md:flex-row gap-8 
+            md:items-stretch
+          "
+        >
+          {/* Formulario a la izquierda */}
           <div className="md:w-1/2 flex flex-col justify-center h-full">
             <PriceSelectorForm onChange={setSelections} />
           </div>
@@ -72,7 +74,8 @@ export default function PlanPersonalizado() {
         </div>
       </div>
     </div>
-  );
+  </>
+);
 }
 
 

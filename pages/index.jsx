@@ -158,23 +158,24 @@ export default function Home() {
           {/* Logo cloud en color, con alto uniforme */}
           <div className="mt-8 bg-white/90 rounded-2xl shadow-xl px-6 py-8">
             <ul className="grid grid-cols-2 gap-x-8 gap-y-6 justify-items-center
-               md:flex md:flex-nowrap md:justify-between md:gap-8">
+  md:flex md:flex-nowrap md:justify-between md:gap-6">
               {[
-                { src: "/img/clientes/aura-logo.svg", alt: "AURA", scale: "scale-[1.18] md:scale-[1.22]" },
-                { src: "/img/clientes/beecomex-logo.svg", alt: "Bee Comex" },
-                { src: "/img/clientes/dymec-logo.svg", alt: "DYMEC" },
-                { src: "/img/clientes/walter-logo.svg", alt: "Walter Villegas", scale: "scale-[1.15] md:scale-[1.2]" },
-                { src: "/img/clientes/estudio-logo.svg", alt: "Estudio de Abogacía", scale: "scale-[1.18] md:scale-[1.22]" }, // <- filename corregido
-              ].map(({ src, alt, scale }) => (
-                <li key={alt} className="relative h-14 md:h-16 w-full md:w-44">
-                  <Image
-                    src={src}
-                    alt={alt}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 176px"
-                    style={{ objectFit: "contain" }}
-                    className={`opacity-90 hover:opacity-100 transition ${scale || ""}`}
-                  />
+                { src: "/img/clientes/walter-logo.svg", alt: "Walter Villegas", className: "scale-[1.2] md:scale-[1.25]" },
+                { src: "/img/clientes/dymec-logo.svg", alt: "DYMEC", className: "scale-[1.15] md:scale-[1.18]" },
+                { src: "/img/clientes/estudio-logo.svg", alt: "Bracamonte Fellner", className: "scale-[1.15] md:scale-[1.2]" },
+                { src: "/img/clientes/aura-logo.svg", alt: "AURA", className: "scale-[1] md:scale-[1.05]" },
+                { src: "/img/clientes/beecomex-logo.svg", alt: "Bee Comex", className: "scale-[1.05] md:scale-[1.1]" },
+              ].map(({ src, alt, className }) => (
+                <li key={alt} className="flex items-center justify-center h-16 md:h-20 w-full md:w-44 px-2">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={src}
+                      alt={alt}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 160px"
+                      className={`object-contain opacity-90 hover:opacity-100 transition ${className}`}
+                    />
+                  </div>
                 </li>
               ))}
             </ul>

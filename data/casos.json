@@ -3,31 +3,71 @@
     "rubro": "Salud",
     "casos": [
       {
-        "nombre": "Lic. Walter Villegas, nutricionista",
+        "nombre": "Lic. Walter Villegas - Nutricionista",
         "logo": "/img/clientes/walter-logo.svg",
-        "descripcion": "Acompañamos a Walter en la creación de su identidad digital y estrategias de comunicación para llegar a nuevos pacientes.",
+        "descripcion": "Acompañamos a Walter en la creación de su identidad digital, creando su marca visual y redes sociales desde cero. Aramis se encarga del calendario y producción de contenido y manejo de pauta publicitaria.",
         "bullets": [
-          "Identidad visual desde cero.",
-          "Estrategia de contenidos para Instagram.",
-          "Diseño de materiales digitales."
+          "Identidad visual desde cero",
+          "Creación de todos sus perfiles",
+          "Planificación de contenido",
+          "Creación de contenido",
+          "Manejo de pauta"
         ],
         "links": [
-          { "label": "Instagram", "url": "https://www.instagram.com/nutricion.villegas/" },
-          { "label": "Facebook", "url": "https://www.facebook.com/profile.php?id=61577040393266" }
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/nutricion.villegas/"
+          },
+          {
+            "label": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=61577040393266"
+          }
         ]
       },
       {
         "nombre": "DYMEC - Medicina estética y dermatología",
         "logo": "/img/clientes/dymec-logo.svg",
-        "descripcion": "Renovación de la presencia digital de DYMEC y campañas para captar nuevos pacientes.",
+        "descripcion": "El mayor pain de Dymec se encontraba en tener que planificar y proponer contenido. Ahora Dymec delega en Aramis toda su presencia online.",
         "bullets": [
-          "Rediseño de logo y branding.",
-          "Campañas en redes sociales.",
-          "Diseño de flyers y piezas informativas."
+          "Rediseño de la estética de sus redes",
+          "Planificación de contenido",
+          "Creación de contenido",
+          "Manejo de pauta"
         ],
         "links": [
-          { "label": "Instagram", "url": "https://www.instagram.com/caceres.dymec/" },
-          { "label": "Facebook", "url": "https://www.facebook.com/profile.php?id=100063159914711" }
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/caceres.dymec/"
+          },
+          {
+            "label": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=100063159914711"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "rubro": "Abogacía",
+    "casos": [
+      {
+        "nombre": "Bracamonte Fellner & Cabaaa Fusz - Estudio Jurídico",
+        "logo": "/img/clientes/estudio-logo.svg",
+        "descripcion": "Ya contando con su identidad visual, Aramis toma la responsabilidad de la planificación de contenido, producción y edición del mismo, y manejo de pauta publicitaria.",
+        "bullets": [
+          "Planificación de contenido",
+          "Creación de contenido",
+          "Manejo de pauta"
+        ],
+        "links": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/bfcf.estudio/"
+          },
+          {
+            "label": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=61572191224781"
+          }
         ]
       }
     ]
@@ -38,14 +78,16 @@
       {
         "nombre": "Bee Comex - Importadora",
         "logo": "/img/clientes/beecomex-logo.svg",
-        "descripcion": "Desarrollamos su marca y presencia online para posicionar a Bee Comex como importadora líder.",
+        "descripcion": "Desarrollamos su marca y presencia online para posicionar a Bee Comex como importadora líder. Proyecto en pausa a retomar una vez BeeComex esté habilitada para trabajar.",
         "bullets": [
-          "Identidad visual profesional.",
-          "Diseño de sitio institucional.",
-          "Asesoría en comunicación B2B."
+          "Identidad visual desde cero",
+          "Creación de todos sus perfiles"
         ],
         "links": [
-          { "label": "Instagram", "url": "https://www.instagram.com/bee.comex/" }
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/bee.comex/"
+          }
         ]
       }
     ]
@@ -54,7 +96,7 @@
     "rubro": "Educación / ONG",
     "casos": [
       {
-        "nombre": "AURA - Asociación Civil",
+        "nombre": "AURA - Fundación",
         "logo": "/img/clientes/aura-logo.svg",
         "descripcion": "Apoyamos a AURA en la difusión de su misión de recolectar material de estudio y promover el arte en niños.",
         "bullets": [
@@ -63,11 +105,12 @@
           "Diseño de piezas para eventos benéficos."
         ],
         "links": [
-          { "label": "Instagram", "url": "https://www.instagram.com/aura.artetuc/" }
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/aura.artetuc/"
+          }
         ]
       }
     ]
   }
 ]
-
-

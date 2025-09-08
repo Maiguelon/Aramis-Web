@@ -20,20 +20,18 @@ export default function Header() {
     <header className="bg-primary text-bg-light px-6 py-3 shadow-2xl border-b-4 border-accent-yellow sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 h-12 md:h-14"> {/* Ajusta el alto del contenedor */}
-          <div className="relative h-full aspect-square flex-shrink-0">
+        <Link href="/" className="flex items-center gap-2 h-12 md:h-14">
+          <div className="relative h-full w-28 md:w-32 flex-shrink-0">
             <Image
               src="/img/stock/logoAramis.svg"
               alt="Aramis Logo"
               fill
-              style={{ objectFit: "contain" }} // Ocupa todo el cuadrado sin deformar
-              priority
-              sizes="48px"
+              style={{ objectFit: "contain" }}
+              priority sizes="96px"
               className="rounded-full"
             />
           </div>
         </Link>
-
 
         {/* Nav Desktop */}
         <nav className="hidden md:flex space-x-4">
