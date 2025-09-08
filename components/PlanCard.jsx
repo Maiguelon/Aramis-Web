@@ -93,6 +93,13 @@ export default function PlanCard({
   const colorClass = colorStyles[color] || colorStyles.primary;
   const premium = color === "combo_total";
 
+  // Umbrales:
+  const UMBRAL_MENSUAL_ABS = 5000;
+  const UMBRAL_UNICOS_ABS = 3000;
+
+  const showMensual = ahorroMensual >= UMBRAL_MENSUAL_ABS;
+  const showUnicos = ahorroUnicos >= UMBRAL_UNICOS_ABS;
+
   if (!hayContenido) {
     return (
       <div className="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-gray-200 min-h-[300px] flex flex-col justify-center items-center">
@@ -155,31 +162,17 @@ export default function PlanCard({
       </div>
 
       {/* Bloques de ahorro independientes (sin total combinado) */}
-      {(ahorroMensual > 0 || ahorroUnicos > 0) && (
-        <div className="mb-4 space-y-2">
-          {ahorroMensual > 0 && (
-            <div
-              className={`
-                p-3 rounded-xl text-sm font-semibold shadow-sm border
-                ${premium ? "bg-white/90 text-primary border-white/60" : "bg-green-100 text-green-800 border-green-200"}
-              `}
-            >
-              {/* Emoji pedido */}
-              <span className="mr-1" aria-hidden>🎉</span>
-              ¡Estás ahorrando ${ahorroMensual.toLocaleString()} al mes!
-            </div>
-          )}
-          {ahorroUnicos > 0 && (
-            <div
-              className={`
-                p-3 rounded-xl text-sm font-semibold shadow-sm border
-                ${premium ? "bg-white/90 text-primary border-white/60" : "bg-green-100 text-green-800 border-green-200"}
-              `}
-            >
-              <span className="mr-1" aria-hidden>🎉</span>
-              ¡Te ahorrás ${ahorroUnicos.toLocaleString()} en elementos de una vez!
-            </div>
-          )}
+      {showMensual && (
+        <div className={`${premium ? "bg-white/90 text-primary border-white/60" : "bg-green-100 text-green-800 border-green-200"} p-3 rounded-xl text-sm font-semibold shadow-sm border`}>
+          <span className="mr-1" aria-hidden>🎉</span>
+          ¡Estás ahorrando ${ahorroMensual.toLocaleString()} al mes!
+        </div>
+      )}
+
+      {showUnicos && (
+        <div className={`${premium ? "bg-white/90 text-primary border-white/60" : "bg-green-100 text-green-800 border-green-200"} p-3 rounded-xl text-sm font-semibold shadow-sm border`}>
+          <span className="mr-1" aria-hidden>🎉</span>
+          ¡Te ahorrás ${ahorroUnicos.toLocaleString()} en elementos de una vez!
         </div>
       )}
 
