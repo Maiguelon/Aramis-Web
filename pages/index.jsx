@@ -190,7 +190,7 @@ export default function Home() {
           <div className="mt-6 grid md:grid-cols-3 gap-4 text-left">
             <figure className="bg-white/90 rounded-2xl shadow p-4 border-l-4 border-accent-yellow">
               <blockquote className="text-primary/90 italic">
-                “Mejoré la comunicación y la llegada a pacientes. Orden, ideas y resultados.”
+                “Me sorprendió el nivel de la producción, muy profesionales.”
               </blockquote>
               <figcaption className="mt-3 text-sm text-primary font-semibold">
                 Lic. Walter Villegas · Nutrición
@@ -199,7 +199,7 @@ export default function Home() {
 
             <figure className="bg-white/90 rounded-2xl shadow p-4 border-l-4 border-accent-yellow">
               <blockquote className="text-primary/90 italic">
-                “Nos ayudaron a profesionalizar la imagen y mantener presencia constante.”
+                “Ya no tengo que andar pendiente de qué subir y cuando subirlo.”
               </blockquote>
               <figcaption className="mt-3 text-sm text-primary font-semibold">
                 CÁCERES · DYMEC Dermatología y Estética
@@ -208,7 +208,7 @@ export default function Home() {
 
             <figure className="bg-white/90 rounded-2xl shadow p-4 border-l-4 border-accent-yellow">
               <blockquote className="text-primary/90 italic">
-                “Diseño, redes y piezas para campañas: todo a tiempo y con mucha dedicación.”
+                “Diseño, redes y piezas para campañas. Todo a tiempo y de calidad.”
               </blockquote>
               <figcaption className="mt-3 text-sm text-primary font-semibold">
                 AURA · Asociación Civil

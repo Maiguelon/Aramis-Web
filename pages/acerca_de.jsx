@@ -34,7 +34,7 @@ export default function Nosotros() {
       {/* Intro */}
       <div className="max-w-2xl mx-auto mb-16 bg-white/10 p-6 rounded-2xl shadow-xl border-l-4 border-accent-yellow backdrop-blur-md">
         <p className="text-lg text-center text-bg-light">
-          En <span className="font-bold text-accent-yellow">Aramis</span> nos une la pasión por ayudar a marcas y emprendedores a crecer, mezclando estrategia, creatividad y tecnología. <br />
+          En <span className="font-bold text-accent-yellow">Aramis</span> genuinamente nos encanta ver cómo le va mejor a nuestros clientes. <br />
           Trabajamos de manera cercana, transparente y orientada a resultados.
         </p>
       </div>
@@ -78,7 +78,7 @@ export default function Nosotros() {
           Creemos que el marketing digital debe ser cercano, humano y personalizado. Nos importa el proceso, pero más aún los resultados que nuestros clientes pueden ver y sentir en sus proyectos.
         </p>
         <p className="text-bg-light">
-          Nuestro compromiso es acompañarte desde el primer día, adaptándonos a tus necesidades y dándote herramientas concretas para que tu marca crezca de verdad.
+          Nuestro compromiso es acompañarte desde el primer día, adaptándonos a tus necesidades y dándote herramientas concretas para que tu marca crezca, sin venderte lo que no necesitas.
         </p>
       </section>
     </main>
