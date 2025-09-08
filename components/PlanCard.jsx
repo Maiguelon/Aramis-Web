@@ -1,3 +1,4 @@
+// components/PlanCard.jsx
 import React, { useState, useEffect } from 'react';
 import { ArrowRightCircle } from 'lucide-react';
 
@@ -17,7 +18,10 @@ export default function PlanCard({
   costoUnicos,
   phrases,
   selections,
-  color = "primary"
+  color = "primary",
+  // 👉 Ahorros por tipo (se muestran por separado si > 0)
+  ahorroMensual = 0,
+  ahorroUnicos = 0,
 }) {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [enviado, setEnviado] = useState(false);
@@ -70,7 +74,7 @@ export default function PlanCard({
     (val) => val !== 0 && val !== false
   );
 
-  // Resúmenes
+  // Resúmenes legibles
   const resumenMensual = [];
   if (selections.posts > 0) resumenMensual.push(`${selections.posts} post${selections.posts > 1 ? 's' : ''}`);
   if (selections.reels > 0) resumenMensual.push(`${selections.reels} reel${selections.reels > 1 ? 's' : ''}`);
@@ -86,10 +90,7 @@ export default function PlanCard({
   if (selections.tiendanube) resumenWeb.push("Tiendanube");
   if (selections.pagina) resumenWeb.push("Página personalizada");
 
-  // Clases de color
   const colorClass = colorStyles[color] || colorStyles.primary;
-
-  // Estilos para el caso negro premium (combo_total)
   const premium = color === "combo_total";
 
   if (!hayContenido) {
@@ -119,19 +120,19 @@ export default function PlanCard({
       <div className="mb-2 flex flex-col gap-2">
         {resumenMensual.length > 0 && (
           <div>
-            <span className={`inline-block bg-accent-blue/10 text-accent-blue text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2`}>Mensual</span>
+            <span className="inline-block bg-accent-blue/10 text-accent-blue text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2">Mensual</span>
             <span className={`text-base ${premium ? "text-white" : "text-gray-800"}`}>{resumenMensual.join(', ')}</span>
           </div>
         )}
         {resumenUnicos.length > 0 && (
           <div>
-            <span className={`inline-block bg-secondary/10 text-secondary text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2`}>Únicos</span>
+            <span className="inline-block bg-secondary/10 text-secondary text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2">Únicos</span>
             <span className={`text-base ${premium ? "text-white" : "text-gray-800"}`}>{resumenUnicos.join(', ')}</span>
           </div>
         )}
         {resumenWeb.length > 0 && (
           <div>
-            <span className={`inline-block bg-accent-yellow/20 text-accent-yellow text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2`}>Web</span>
+            <span className="inline-block bg-accent-yellow/20 text-accent-yellow text-xs px-3 py-1 rounded-full font-semibold mb-1 mr-2">Web</span>
             <span className={`text-base ${premium ? "text-white" : "text-gray-800"}`}>{resumenWeb.join(', ')}</span>
           </div>
         )}
@@ -152,6 +153,35 @@ export default function PlanCard({
           </div>
         )}
       </div>
+
+      {/* Bloques de ahorro independientes (sin total combinado) */}
+      {(ahorroMensual > 0 || ahorroUnicos > 0) && (
+        <div className="mb-4 space-y-2">
+          {ahorroMensual > 0 && (
+            <div
+              className={`
+                p-3 rounded-xl text-sm font-semibold shadow-sm border
+                ${premium ? "bg-white/90 text-primary border-white/60" : "bg-green-100 text-green-800 border-green-200"}
+              `}
+            >
+              {/* Emoji pedido */}
+              <span className="mr-1" aria-hidden>🎉</span>
+              ¡Estás ahorrando ${ahorroMensual.toLocaleString()} al mes!
+            </div>
+          )}
+          {ahorroUnicos > 0 && (
+            <div
+              className={`
+                p-3 rounded-xl text-sm font-semibold shadow-sm border
+                ${premium ? "bg-white/90 text-primary border-white/60" : "bg-green-100 text-green-800 border-green-200"}
+              `}
+            >
+              <span className="mr-1" aria-hidden>🎉</span>
+              ¡Te ahorrás ${ahorroUnicos.toLocaleString()} en elementos de una vez!
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Frases motivadoras */}
       <div className="mb-2">
@@ -204,26 +234,13 @@ export default function PlanCard({
           />
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md w-full font-semibold"
+            className="bg-accent-yellow text-primary font-bold px-6 py-2 rounded-full w-full hover:bg-accent-blue hover:text-white transition-all"
           >
-            Enviar plan
+            Enviar
           </button>
         </form>
-      )}
-      {enviado && (
-        <div className="mt-4 bg-green-500 text-bg-light p-2 rounded-md text-center text-base font-semibold transition-all">
-          ¡Gracias por enviar tu plan! Te vamos a contactar pronto.
-        </div>
-      )}
-      {enviadoBanda && !enviado && (
-        <div className="w-full border-b-4 border-green-500 text-green-700 text-xs text-center pb-1">
-          Plan enviado correctamente
-        </div>
       )}
     </div>
   );
 }
-
-
-
 
