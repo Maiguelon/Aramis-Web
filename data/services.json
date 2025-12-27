@@ -5,11 +5,11 @@
   },
   "limite_inferior": {
     "nombre": "Limite_Inferior",
-    "precio_unitario": 109000
+    "precio_unitario": 130000
   },
   "limite_medio": {
     "nombre": "Limite_Medio",
-    "precio_unitario": 222500
+    "precio_unitario": 252500
   },
   "limite_superior": {
     "nombre": "Limite_Superior",
@@ -17,11 +17,11 @@
   },
   "publicacion": {
     "nombre": "Post",
-    "precio_unitario": 9500
+    "precio_unitario": 11000
   },
   "reel": {
     "nombre": "Reel",
-    "precio_unitario": 40000
+    "precio_unitario": 50000
   },
   "historia": {
     "nombre": "Historia",
@@ -29,7 +29,7 @@
   },
   "brandbook": {
     "nombre": "Brand Book",
-    "precio_unitario": 35000
+    "precio_unitario": 60000
   },
   "tarjetas": {
     "nombre": "Tarjetas de Presentación",
@@ -49,6 +49,6 @@
   },
   "moderacion": {
     "nombre": "Moderación y respuesta de mensajes/comentarios",
-    "precio_unitario": 30000
+    "precio_unitario": 40000
   }
 }
