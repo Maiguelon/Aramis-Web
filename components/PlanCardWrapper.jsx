@@ -6,12 +6,11 @@ import {
   calcularUnicos,
   calcularUnicosPaginas,
   calcularMensual,
-  aplicarDescuentoMensual,
   calcularCostoUnicos
 } from '../utils/PlanFunctions';
 import { generarDescripcionPlan } from '../utils/PhrasesMaker';
 import { getPlanColor } from '../utils/getPlanColor';
-import servicios from '../data/services.json'; // 👉 para calcular el "sin escalas"
+import servicios from '../data/services.json'; 
 
 export default function PlanCardWrapper({ selections }) {
   const {
@@ -37,55 +36,59 @@ export default function PlanCardWrapper({ selections }) {
     pagina ||
     tiendanube;
 
-  // ----- Cálculos base -----
+  // ----- A. CÁLCULOS ARAMIS -----
   const nucleo = calcularNucleo({ posts, reels, historias, moderacion });
   const unicos = calcularUnicos({ brandbook, tarjetas, folletos });
   const unicosPaginas = calcularUnicosPaginas({ pagina, tiendanube });
 
-  // Mensual con ESCALAS (ya aplica dMedio / dAlto)
-  const mensual = calcularMensual(nucleo);
+  // 1. Mensual (Escalas + Fee) -> SIN descuentos extra por web
+  const mensualAramis = calcularMensual(nucleo);
 
-  // Mensual con descuento por web (si corresponde)
-  const mensualConDescuento = aplicarDescuentoMensual(mensual, { pagina, tiendanube });
+  // 2. Únicos (Brandbook, etc) -> Aplicamos descuento por volumen de nucleo si corresponde
+  const unicosConDescuento = calcularCostoUnicos(nucleo, unicos);
 
-  // Únicos con descuento según combos (NO incluye páginas)
-  const unicosConDescuento = calcularCostoUnicos(
-    nucleo,
-    mensualConDescuento,
-    unicos,
-    unicosPaginas
-  );
+  // 3. Total Únicos (Gráfica con descuento + Web a precio de lista)
+  const costoUnicosAramis = unicosConDescuento + unicosPaginas;
 
-  // Costo final de únicos (descontado + páginas a precio lleno)
-  const costoUnicos = unicosConDescuento + unicosPaginas;
 
-  // ----- Frases y color -----
+  // ----- B. CÁLCULOS MERCADO (Comparativa) -----
+  const mercado = servicios.mercado || {}; // fallback por si no cargó el json nuevo aún
+
+  const mercadoMensual = 
+    (posts * (mercado.post || 0)) +
+    (reels * (mercado.reel || 0)) +
+    (historias * (mercado.historia || 0)) +
+    (moderacion ? (mercado.moderacion || 0) : 0);
+
+  const mercadoUnicos =
+    (brandbook ? (mercado.brandbook || 0) : 0) +
+    (tarjetas ? (mercado.tarjetas || 0) : 0) +
+    (folletos * (mercado.folletos || 0)) +
+    (pagina ? (mercado.pagina || 0) : 0) +
+    (tiendanube ? (mercado.tiendanube || 0) : 0);
+
+
+  // ----- C. AHORRO -----
+  const ahorroMensual = Math.max(0, mercadoMensual - mensualAramis);
+  const ahorroUnicos = Math.max(0, mercadoUnicos - costoUnicosAramis);
+
+  // ----- D. TEXTOS Y COLORES -----
   const frases = tieneElementosSeleccionados()
     ? generarDescripcionPlan({ nucleo, unicos, pagina, tiendanube, brandbook, tarjetas, folletos })
     : [];
 
   const color = getPlanColor(selections);
 
-  // ----- AHORROS (se muestran por separado) -----
-  // 1) Ahorro mensual SOLO por escalas del núcleo (sin considerar descuento por web)
-  const mensualSinEscalas = nucleo > 0 ? (servicios.fee.precio_unitario + nucleo) : 0;
-  const ahorroMensual = Math.max(0, mensualSinEscalas - mensual);
-
-  // 2) Ahorro en elementos ÚNICOS (lo que bajó por combos/umbral)
-  const ahorroUnicos = Math.max(0, unicos - unicosConDescuento);
-
   return (
     <PlanCard
-      precioMensual={tieneElementosSeleccionados() ? mensualConDescuento : 0}
-      costoUnicos={tieneElementosSeleccionados() ? costoUnicos : 0}
+      precioMensual={tieneElementosSeleccionados() ? mensualAramis : 0}
+      costoUnicos={tieneElementosSeleccionados() ? costoUnicosAramis : 0}
       phrases={frases}
       selections={selections}
       color={color}
-      // 👉 pasamos ahorros independientes (sin total combinado)
       ahorroMensual={ahorroMensual}
       ahorroUnicos={ahorroUnicos}
     />
   );
 }
-
 

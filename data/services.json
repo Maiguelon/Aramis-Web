@@ -1,54 +1,65 @@
 {
   "fee": {
-    "nombre": "Fee",
-    "precio_unitario": 40000
+    "nombre": "Fee de Gestión Mensual",
+    "precio_unitario": 50000
   },
   "limite_inferior": {
     "nombre": "Limite_Inferior",
-    "precio_unitario": 130000
+    "precio_unitario": 180000
   },
   "limite_medio": {
     "nombre": "Limite_Medio",
-    "precio_unitario": 252500
+    "precio_unitario": 350000
   },
   "limite_superior": {
     "nombre": "Limite_Superior",
-    "precio_unitario": 390000
+    "precio_unitario": 650000
   },
   "publicacion": {
-    "nombre": "Post",
-    "precio_unitario": 11000
+    "nombre": "Post (+ Historia de regalo)",
+    "precio_unitario": 16000
   },
   "reel": {
-    "nombre": "Reel",
-    "precio_unitario": 50000
+    "nombre": "Reel (+ Historia de regalo)",
+    "precio_unitario": 60000
   },
   "historia": {
-    "nombre": "Historia",
-    "precio_unitario": 3000
+    "nombre": "Historia Adicional (Suelta)",
+    "precio_unitario": 5000
   },
   "brandbook": {
-    "nombre": "Brand Book",
-    "precio_unitario": 60000
+    "nombre": "Brand Book / Manual de Marca",
+    "precio_unitario": 90000
   },
   "tarjetas": {
     "nombre": "Tarjetas de Presentación",
-    "precio_unitario": 9500
+    "precio_unitario": 12000
   },
   "folletos": {
-    "nombre": "Folletos",
-    "precio_unitario": 8000
+    "nombre": "Folletos (Diseño)",
+    "precio_unitario": 10000
   },
   "tiendanube": {
-    "nombre": "Página de Tiendanube",
-    "precio_unitario": 150000
+    "nombre": "Setup Tiendanube",
+    "precio_unitario": 180000
   },
   "pagina": {
-    "nombre": "Página Personalizada (¡Como esta!)",
-    "precio_unitario": 400000
+    "nombre": "Web Personalizada (Landing/Institucional)",
+    "precio_unitario": 600000
   },
   "moderacion": {
-    "nombre": "Moderación y respuesta de mensajes/comentarios",
-    "precio_unitario": 40000
+    "nombre": "Community Manager (Moderación)",
+    "precio_unitario": 45000
+  },
+  "mercado": {
+    "post": 22000,
+    "reel": 85000,
+    "historia": 6000,
+    "moderacion": 80000,
+    "brandbook": 150000,
+    "tarjetas": 20000,
+    "folletos": 15000,
+    "pagina": 800000,
+    "tiendanube": 250000
   }
 }
