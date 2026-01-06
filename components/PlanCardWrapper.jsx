@@ -13,11 +13,11 @@ import { getPlanColor } from '../utils/getPlanColor';
 import servicios from '../data/services.json'; 
 
 export default function PlanCardWrapper({ selections }) {
+  // 1. AQUI FALTABA 'ads'
   const {
     posts = 0,
     reels = 0,
-    historias = 0,
-    moderacion = false,
+    ads = false, 
     brandbook = false,
     tarjetas = false,
     folletos = 0,
@@ -28,8 +28,7 @@ export default function PlanCardWrapper({ selections }) {
   const tieneElementosSeleccionados = () =>
     posts > 0 ||
     reels > 0 ||
-    historias > 0 ||
-    moderacion ||
+    ads || // Agregamos ads aquí también
     brandbook ||
     tarjetas ||
     folletos > 0 ||
@@ -37,28 +36,29 @@ export default function PlanCardWrapper({ selections }) {
     tiendanube;
 
   // ----- A. CÁLCULOS ARAMIS -----
-  const nucleo = calcularNucleo({ posts, reels, historias, moderacion });
+  // 2. AQUI FALTABA PASAR 'ads' A LA FUNCION
+  const nucleo = calcularNucleo({ posts, reels, ads });
+  
   const unicos = calcularUnicos({ brandbook, tarjetas, folletos });
   const unicosPaginas = calcularUnicosPaginas({ pagina, tiendanube });
 
-  // 1. Mensual (Escalas + Fee) -> SIN descuentos extra por web
+  // 1. Mensual (Escalas + Fee)
   const mensualAramis = calcularMensual(nucleo);
 
-  // 2. Únicos (Brandbook, etc) -> Aplicamos descuento por volumen de nucleo si corresponde
+  // 2. Únicos (Brandbook, etc)
   const unicosConDescuento = calcularCostoUnicos(nucleo, unicos);
 
-  // 3. Total Únicos (Gráfica con descuento + Web a precio de lista)
+  // 3. Total Únicos
   const costoUnicosAramis = unicosConDescuento + unicosPaginas;
 
 
   // ----- B. CÁLCULOS MERCADO (Comparativa) -----
-  const mercado = servicios.mercado || {}; // fallback por si no cargó el json nuevo aún
+  const mercado = servicios.mercado || {}; 
 
   const mercadoMensual = 
     (posts * (mercado.post || 0)) +
     (reels * (mercado.reel || 0)) +
-    (historias * (mercado.historia || 0)) +
-    (moderacion ? (mercado.moderacion || 0) : 0);
+    (ads ? (mercado.ads || 0) : 0); // 3. Agregamos Ads al mercado
 
   const mercadoUnicos =
     (brandbook ? (mercado.brandbook || 0) : 0) +
@@ -73,8 +73,9 @@ export default function PlanCardWrapper({ selections }) {
   const ahorroUnicos = Math.max(0, mercadoUnicos - costoUnicosAramis);
 
   // ----- D. TEXTOS Y COLORES -----
+  // Pasamos 'ads' para que generarDescripcionPlan sepa que existen (si lo usa)
   const frases = tieneElementosSeleccionados()
-    ? generarDescripcionPlan({ nucleo, unicos, pagina, tiendanube, brandbook, tarjetas, folletos })
+    ? generarDescripcionPlan({ nucleo, unicos, pagina, tiendanube, brandbook, tarjetas, folletos, ads })
     : [];
 
   const color = getPlanColor(selections);
@@ -91,4 +92,3 @@ export default function PlanCardWrapper({ selections }) {
     />
   );
 }
-

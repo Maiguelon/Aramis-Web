@@ -16,7 +16,7 @@ export default function PriceSelectorForm({ onChange }) {
   const [form, setForm] = useState({
     posts: 0,
     reels: 0,
-    ads: false, // Nuevo campo
+    ads: false,
     brandbook: false,
     tarjetas: false,
     folletos: 0,
@@ -71,7 +71,8 @@ export default function PriceSelectorForm({ onChange }) {
         <div className="flex justify-between items-center mb-2">
           <label className={baseLabel}>
             Posts
-            <Tooltip text="Diseño y redacción. Incluye adaptación a historia." />
+            {/* CORREGIDO: Saqué la redundancia de la historia */}
+            {/*<Tooltip text="Diseño y redacción de posteos estáticos o carruseles." />*/}
           </label>
           {isMobile ? (
             <select
@@ -99,7 +100,8 @@ export default function PriceSelectorForm({ onChange }) {
         <div className="flex justify-between items-center mb-2">
           <label className={baseLabel}>
             Reels
-            <Tooltip text="Grabación, edición y guionado. Incluye historia." />
+            {/* CORREGIDO: Volvimos al texto de calidad de producción */}
+            <Tooltip text="Grabación con luces y micrófonos, edición profesional y guionado." />
           </label>
           {isMobile ? (
             <select
@@ -124,7 +126,7 @@ export default function PriceSelectorForm({ onChange }) {
           )}
         </div>
 
-        {/* NUEVO: META ADS */}
+        {/* META ADS */}
         <div className="flex justify-between items-center mb-2 pt-2 border-t border-gray-200/50">
           <label className={baseLabel}>
             Gestión Meta Ads
@@ -139,7 +141,7 @@ export default function PriceSelectorForm({ onChange }) {
         </div>
       </section>
 
-      {/* Elementos únicos (Simplificado según charlamos antes) */}
+      {/* Elementos únicos */}
       <section className={baseSection}>
         <div className="flex items-center mb-3">
           <h3 className="text-lg font-serif font-bold text-secondary">Elementos de una vez</h3>
