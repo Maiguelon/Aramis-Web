@@ -6,8 +6,7 @@ import {
   calcularUnicos,
   calcularUnicosPaginas,
   calcularMensual,
-  calcularCostoUnicos,
-  aplicarDescuentoMensual // <--- Agregué esto que faltaba
+  calcularCostoUnicos
 } from '../utils/PlanFunctions';
 
 function getPlanData(selections) {
@@ -16,14 +15,14 @@ function getPlanData(selections) {
   const unicosPaginas = calcularUnicosPaginas(selections);
   const mensual = calcularMensual(nucleo);
   
-  // Ahora esta función ya existe gracias al import
-  const mensualConDescuento = aplicarDescuentoMensual(mensual, selections);
+  // CORRECCIÓN:
+  // 1. Quitamos 'aplicarDescuentoMensual' porque no se usa.
+  // 2. Corregimos los parámetros: calcularCostoUnicos solo pide (nucleo, unicos).
+  // 3. Sumamos 'unicosPaginas' (Web/Tienda) por fuera, porque esas no suelen llevar descuento de "combo".
   
-  const costoUnicos =
-    calcularCostoUnicos(nucleo, mensualConDescuento, unicos, unicosPaginas) +
-    unicosPaginas;
+  const costoUnicos = calcularCostoUnicos(nucleo, unicos) + unicosPaginas;
 
-  return { precioMensual: mensualConDescuento, costoUnicos };
+  return { precioMensual: mensual, costoUnicos };
 }
 
 const planesPrearmados = [
