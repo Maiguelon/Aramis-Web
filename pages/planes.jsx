@@ -1,6 +1,7 @@
 import PlanCard from '../components/PlanCard';
 import Link from 'next/link';
 import { getPlanColor } from '../utils/getPlanColor';
+import servicios from '../data/services.json'; // Importamos los precios para calcular ahorros
 import {
   calcularNucleo,
   calcularUnicos,
@@ -15,40 +16,60 @@ function getPlanData(selections) {
   const unicosPaginas = calcularUnicosPaginas(selections);
   const mensual = calcularMensual(nucleo);
   
-  // CORRECCIÓN:
-  // 1. Quitamos 'aplicarDescuentoMensual' porque no se usa.
-  // 2. Corregimos los parámetros: calcularCostoUnicos solo pide (nucleo, unicos).
-  // 3. Sumamos 'unicosPaginas' (Web/Tienda) por fuera, porque esas no suelen llevar descuento de "combo".
-  
+  // Costo Único limpio
   const costoUnicos = calcularCostoUnicos(nucleo, unicos) + unicosPaginas;
 
   return { precioMensual: mensual, costoUnicos };
 }
 
+// Función auxiliar para calcular precio de mercado (Comparativa)
+function getAhorros(selections, precioAramisMensual, precioAramisUnico) {
+  const mercado = servicios.mercado || {};
+  
+  // Calcular valor de mercado mensual
+  const mercadoMensual = 
+    (selections.posts * (mercado.post || 0)) +
+    (selections.reels * (mercado.reel || 0)) +
+    (selections.ads ? (mercado.ads || 0) : 0);
+
+  // Calcular valor de mercado único
+  const mercadoUnicos =
+    (selections.brandbook ? (mercado.brandbook || 0) : 0) +
+    (selections.tarjetas ? (mercado.tarjetas || 0) : 0) +
+    (selections.folletos * (mercado.folletos || 0)) +
+    (selections.pagina ? (mercado.pagina || 0) : 0) +
+    (selections.tiendanube ? (mercado.tiendanube || 0) : 0);
+
+  return {
+    ahorroMensual: Math.max(0, mercadoMensual - precioAramisMensual),
+    ahorroUnicos: Math.max(0, mercadoUnicos - precioAramisUnico)
+  };
+}
+
 const planesPrearmados = [
   {
-    nombre: "Redes Estándar",
-    descripcion: "Presencia profesional en redes con contenido y planificación.",
-    selections: { posts: 6, reels: 2, ads: false, brandbook: false, tarjetas: false, folletos: 0, pagina: false, tiendanube: false },
-    extras: ["Historias incluidas"]
+    nombre: "Pack Video (Reels)",
+    descripcion: "El formato que más vende. 1 video profesional por semana para tu marca.",
+    selections: { posts: 0, reels: 4, ads: false, brandbook: false, tarjetas: false, folletos: 0, pagina: false, tiendanube: false },
+    extras: ["Incluye creación de guiones, luces y micrófonos para la grabación y edición profesional."]
   },
   {
     nombre: "Identidad Visual",
-    descripcion: "Tu marca con identidad clara y piezas gráficas para comunicar.",
+    descripcion: "Ideal para marcas nuevas. Todo lo visual listo para despegar.",
     selections: { posts: 0, reels: 0, ads: false, brandbook: true, tarjetas: true, folletos: 2, pagina: false, tiendanube: false },
     extras: []
   },
   {
-    nombre: "Growth & Ads", // Le cambié el nombre a este para que luzca el cambio
-    descripcion: "Contenido estratégico y publicidad paga para acelerar resultados.",
-    selections: { posts: 6, reels: 2, ads: true, brandbook: false, tarjetas: false, folletos: 0, pagina: true, tiendanube: false },
-    extras: ["Historias incluidas"]
+    nombre: "Growth & Ads",
+    descripcion: "Mix de contenido y publicidad para acelerar resultados reales.",
+    selections: { posts: 4, reels: 2, ads: true, brandbook: false, tarjetas: false, folletos: 0, pagina: false, tiendanube: false },
+    extras: [""]
   },
   {
-    nombre: "Premium Total",
-    descripcion: "Para marcas que buscan el máximo impacto online y visual.",
-    selections: { posts: 12, reels: 4, ads: true, brandbook: true, tarjetas: false, folletos: 0, pagina: true, tiendanube: false },
-    extras: ["Historias incluidas"]
+    nombre: "Presencia Total",
+    descripcion: "Tu negocio en todos lados: Web propia, Redes activas y Publicidad.",
+    selections: { posts: 8, reels: 4, ads: true, brandbook: false, tarjetas: false, folletos: 0, pagina: true, tiendanube: false },
+    extras: [""]
   },
 ];
 
@@ -85,8 +106,13 @@ export default function Planes() {
           <div className="grid md:grid-cols-2 gap-6 items-start">
             {planesPrearmados.map((plan, idx) => {
               const { precioMensual, costoUnicos } = getPlanData(plan.selections);
+              
+              // Calculamos el ahorro comparado con precio de mercado
+              const { ahorroMensual, ahorroUnicos } = getAhorros(plan.selections, precioMensual, costoUnicos);
+
               const phrases = [plan.descripcion, ...plan.extras];
               const color = getPlanColor(plan.selections);
+
               return (
                 <PlanCard
                   key={idx}
@@ -96,6 +122,9 @@ export default function Planes() {
                   phrases={phrases}
                   color={color}
                   selections={plan.selections}
+                  // Pasamos los ahorros para que salga el cartelito verde
+                  ahorroMensual={ahorroMensual}
+                  ahorroUnicos={ahorroUnicos}
                 />
               );
             })}
