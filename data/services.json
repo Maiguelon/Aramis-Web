@@ -49,7 +49,7 @@
   },
   "pagina": {
     "nombre": "Web Personalizada (Landing/Institucional)",
-    "precio_unitario": 600000
+    "precio_unitario": 450000
   },
   "mercado": {
     "post": 22000,
@@ -59,7 +59,7 @@
     "brandbook": 150000,
     "tarjetas": 20000,
     "folletos": 15000,
-    "pagina": 600000,
+    "pagina": 450000,
     "tiendanube": 150000
   }
 }
