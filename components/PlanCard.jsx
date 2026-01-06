@@ -19,7 +19,6 @@ export default function PlanCard({
   phrases,
   selections,
   color = "primary",
-  // 👉 Ahorros por tipo (se muestran por separado si > 0)
   ahorroMensual = 0,
   ahorroUnicos = 0,
 }) {
@@ -54,9 +53,14 @@ export default function PlanCard({
       if (response.ok) {
         setEnviado(true);
         setEnviadoBanda(true);
-        setMostrarFormulario(false);
         setFormData({ nombre: '', contacto: '', redes: '' });
-        setTimeout(() => setEnviado(false), 4000);
+        
+        // CORRECCIÓN: No cerramos el formulario inmediatamente.
+        // Esperamos 4 segundos para que el usuario lea el mensaje de éxito.
+        setTimeout(() => {
+          setEnviado(false);
+          setMostrarFormulario(false);
+        }, 4000);
       }
     } catch (err) {
       console.error('Error al enviar el formulario:', err);
@@ -93,7 +97,6 @@ export default function PlanCard({
   const colorClass = colorStyles[color] || colorStyles.primary;
   const premium = color === "combo_total";
 
-  // Umbrales:
   const UMBRAL_MENSUAL_ABS = 5000;
   const UMBRAL_UNICOS_ABS = 3000;
 
@@ -161,7 +164,7 @@ export default function PlanCard({
         )}
       </div>
 
-      {/* Bloques de ahorro independientes (sin total combinado) */}
+      {/* Bloques de ahorro independientes */}
       {showMensual && (
         <div className={`${premium ? "bg-white/90 text-primary border-white/60" : "bg-green-100 text-green-800 border-green-200"} p-3 rounded-xl text-sm font-semibold shadow-sm border`}>
           <span className="mr-1" aria-hidden>🎉</span>
@@ -231,6 +234,13 @@ export default function PlanCard({
           >
             Enviar
           </button>
+          
+          {/* AQUÍ ESTÁ EL CARTELITO VERDE DE ÉXITO */}
+          {enviado && (
+            <div className="mt-4 bg-green-500 text-white p-2 rounded-md text-center font-bold">
+              ¡Gracias! Te vamos a contactar pronto.
+            </div>
+          )}
         </form>
       )}
     </div>
