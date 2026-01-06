@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Tooltip from './Tooltip'; // <--- Importamos el componente nuevo
 
 // Hook para detectar si es mobile
 function useIsMobile() {
@@ -31,7 +32,7 @@ export default function PriceSelectorForm({ onChange }) {
   const baseInput =
     "text-primary border rounded-xl px-3 py-2 w-20 text-right shadow focus:ring-2 focus:ring-accent-yellow focus:border-accent-yellow transition-all";
   const baseLabel =
-    "font-semibold text-primary hover:text-accent-blue transition-all duration-200 cursor-pointer";
+    "font-semibold text-primary transition-all duration-200 cursor-default flex items-center";
   const baseSection =
     "bg-bg-light/60 p-4 rounded-2xl mb-4 shadow-inner border border-accent-yellow/10";
 
@@ -59,9 +60,16 @@ export default function PriceSelectorForm({ onChange }) {
     <form className="space-y-6">
       {/* Elementos mensuales */}
       <section className={baseSection}>
-        <h3 className="text-lg font-serif font-bold mb-3 text-secondary">Elementos mensuales</h3>
+        <div className="flex items-center mb-3">
+          <h3 className="text-lg font-serif font-bold text-secondary">Elementos mensuales</h3>
+          <Tooltip text="Gestión mes a mes de tus redes. Consultá por descuentos al abonar trimestral o semestralmente." />
+        </div>
+        
         <div className="flex justify-between items-center mb-2">
-          <label className={baseLabel}>Posts</label>
+          <label className={baseLabel}>
+            Posts
+            <Tooltip text="Diseño y redacción de posteos estáticos o carruseles para el feed." />
+          </label>
           {isMobile ? (
             <select
               value={form.posts}
@@ -85,7 +93,10 @@ export default function PriceSelectorForm({ onChange }) {
           )}
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label className={baseLabel}>Reels</label>
+          <label className={baseLabel}>
+            Reels
+            <Tooltip text="Grabación con luces y micrófonos, edición profesional y guionado." />
+          </label>
           {isMobile ? (
             <select
               value={form.reels}
@@ -109,7 +120,9 @@ export default function PriceSelectorForm({ onChange }) {
           )}
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label className={baseLabel}>Historias</label>
+          <label className={baseLabel}>
+            Historias
+          </label>
           {isMobile ? (
             <select
               value={form.historias}
@@ -133,7 +146,9 @@ export default function PriceSelectorForm({ onChange }) {
           )}
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label className={baseLabel}>Moderación</label>
+          <label className={baseLabel}>
+            Moderación
+          </label>
           <input
             type="checkbox"
             checked={form.moderacion}
@@ -145,9 +160,17 @@ export default function PriceSelectorForm({ onChange }) {
 
       {/* Elementos únicos */}
       <section className={baseSection}>
-        <h3 className="text-lg font-serif font-bold mb-3 text-secondary">Elementos de una vez</h3>
+        <div className="flex items-center mb-3">
+          <h3 className="text-lg font-serif font-bold text-secondary">Elementos de una vez</h3>
+          <Tooltip text="Inversión única. Son desarrollos que quedan para tu marca para siempre." />
+        </div>
+
         <div className="flex justify-between items-center mb-2">
-          <label className={baseLabel}>Brandbook</label>
+          <label className={baseLabel}>
+            Brandbook
+            {/* Este SÍ lo dejamos porque explica qué trae el paquete */}
+            <Tooltip text="Identidad visual completa: Logo, paleta de colores, fuentes y usos." />
+          </label>
           <input
             type="checkbox"
             checked={form.brandbook}
@@ -155,7 +178,9 @@ export default function PriceSelectorForm({ onChange }) {
             className="accent-accent-blue w-5 h-5"
           />
         </div>
+
         <div className="flex justify-between items-center mb-2">
+          {/* Tarjetas: Quitamos el Tooltip, es obvio */}
           <label className={baseLabel}>Tarjetas</label>
           <input
             type="checkbox"
@@ -164,7 +189,9 @@ export default function PriceSelectorForm({ onChange }) {
             className="accent-secondary w-5 h-5"
           />
         </div>
+
         <div className="flex justify-between items-center mb-2">
+           {/* Folletos: Quitamos el Tooltip, es obvio */}
           <label className={baseLabel}>Folletos</label>
           {isMobile ? (
             <select
@@ -192,9 +219,15 @@ export default function PriceSelectorForm({ onChange }) {
 
       {/* Página web */}
       <section className={baseSection}>
-        <h3 className="text-lg font-serif font-bold mb-3 text-accent-blue">Tu página web</h3>
+        <div className="flex items-center mb-3">
+          <h3 className="text-lg font-serif font-bold text-accent-blue">Tu página web</h3>
+          <Tooltip text="Tu negocio online 24/7. El costo de mantenimiento se cotiza aparte." />
+        </div>
+
         <div className="flex justify-between items-center mb-2">
-          <label className={baseLabel}>Tiendanube</label>
+          <label className={baseLabel}>
+            Tiendanube
+          </label>
           <input
             type="checkbox"
             checked={form.tiendanube}
@@ -203,7 +236,9 @@ export default function PriceSelectorForm({ onChange }) {
           />
         </div>
         <div className="flex justify-between items-center mb-2">
-          <label className={baseLabel}>Página personalizada</label>
+          <label className={baseLabel}>
+            Página personalizada
+          </label>
           <input
             type="checkbox"
             checked={form.pagina}
