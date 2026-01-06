@@ -82,8 +82,13 @@ export default function PlanCard({
   const resumenMensual = [];
   if (selections.posts > 0) resumenMensual.push(`${selections.posts} post${selections.posts > 1 ? 's' : ''}`);
   if (selections.reels > 0) resumenMensual.push(`${selections.reels} reel${selections.reels > 1 ? 's' : ''}`);
-  if (selections.historias > 0) resumenMensual.push(`${selections.historias} historia${selections.historias > 1 ? 's' : ''}`);
-  if (selections.moderacion) resumenMensual.push("moderación");
+  
+  // Si hay contenido mensual, aclaramos lo de las historias
+  if (selections.posts > 0 || selections.reels > 0) {
+    resumenMensual.push("Historias bonificadas");
+  }
+
+  if (selections.ads) resumenMensual.push("Gestión Meta Ads");
 
   const resumenUnicos = [];
   if (selections.brandbook) resumenUnicos.push("Brandbook");

@@ -29,26 +29,26 @@ const planesPrearmados = [
   {
     nombre: "Redes Estándar",
     descripcion: "Presencia profesional en redes con contenido y planificación.",
-    selections: { posts: 6, reels: 2, historias: 12, moderacion: false, brandbook: false, tarjetas: false, folletos: 0, pagina: false, tiendanube: false },
-    extras: []
+    selections: { posts: 6, reels: 2, ads: false, brandbook: false, tarjetas: false, folletos: 0, pagina: false, tiendanube: false },
+    extras: ["Historias incluidas"]
   },
   {
     nombre: "Identidad Visual",
     descripcion: "Tu marca con identidad clara y piezas gráficas para comunicar.",
-    selections: { posts: 0, reels: 0, historias: 0, moderacion: false, brandbook: true, tarjetas: true, folletos: 2, pagina: false, tiendanube: false },
+    selections: { posts: 0, reels: 0, ads: false, brandbook: true, tarjetas: true, folletos: 2, pagina: false, tiendanube: false },
     extras: []
   },
   {
-    nombre: "Web + Redes",
-    descripcion: "Tu negocio en redes y con sitio web propio. Listo para crecer.",
-    selections: { posts: 6, reels: 2, historias: 0, moderacion: true, brandbook: false, tarjetas: false, folletos: 0, pagina: true, tiendanube: false },
-    extras: []
+    nombre: "Growth & Ads", // Le cambié el nombre a este para que luzca el cambio
+    descripcion: "Contenido estratégico y publicidad paga para acelerar resultados.",
+    selections: { posts: 6, reels: 2, ads: true, brandbook: false, tarjetas: false, folletos: 0, pagina: true, tiendanube: false },
+    extras: ["Historias incluidas"]
   },
   {
     nombre: "Premium Total",
     descripcion: "Para marcas que buscan el máximo impacto online y visual.",
-    selections: { posts: 12, reels: 4, historias: 20, moderacion: true, brandbook: true, tarjetas: false, folletos: 0, pagina: true, tiendanube: false },
-    extras: []
+    selections: { posts: 12, reels: 4, ads: true, brandbook: true, tarjetas: false, folletos: 0, pagina: true, tiendanube: false },
+    extras: ["Historias incluidas"]
   },
 ];
 

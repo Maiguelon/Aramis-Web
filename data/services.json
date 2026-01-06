@@ -27,6 +27,10 @@
     "nombre": "Historia Adicional (Suelta)",
     "precio_unitario": 5000
   },
+  "ads": {
+    "nombre": "Gestión de Campañas Meta Ads",
+    "precio_unitario": 60000
+  },
   "brandbook": {
     "nombre": "Brand Book / Manual de Marca",
     "precio_unitario": 90000
@@ -47,15 +51,11 @@
     "nombre": "Web Personalizada (Landing/Institucional)",
     "precio_unitario": 600000
   },
-  "moderacion": {
-    "nombre": "Community Manager (Moderación)",
-    "precio_unitario": 45000
-  },
   "mercado": {
     "post": 22000,
     "reel": 85000,
     "historia": 6000,
-    "moderacion": 80000,
+    "ads": 120000,
     "brandbook": 150000,
     "tarjetas": 20000,
     "folletos": 15000,
