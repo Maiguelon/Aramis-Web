@@ -6,7 +6,6 @@ import {
   calcularUnicos,
   calcularUnicosPaginas,
   calcularMensual,
-  aplicarDescuentoMensual,
   calcularCostoUnicos
 } from '../utils/PlanFunctions';
 
