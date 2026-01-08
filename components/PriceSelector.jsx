@@ -64,7 +64,7 @@ export default function PriceSelectorForm({ onChange }) {
           </div>
           {/* AVISO DE HISTORIAS BONIFICADAS */}
           <p className="text-xs text-accent-blue font-bold mt-1 uppercase tracking-wide">
-            ✨ Incluye historias bonificadas con tus posts y reels
+            Incluye historias bonificadas con tus posts y reels
           </p>
         </div>
         
