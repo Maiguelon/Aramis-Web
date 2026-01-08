@@ -48,6 +48,30 @@
     ]
   },
   {
+    "rubro": "Indumentaria",
+    "casos": [
+      {
+        "nombre": "Melocotón Indumentaria",
+        "logo": "/img/clientes/melocoton-logo.svg",
+        "descripcion": "Tomamos su redes, las cuales ya tenían presencia, y las llevamos al siguiente nivel a través de la producción profesional de contenido y la publicidad.",
+        "bullets": [
+          "Creación de contenido",
+          "Manejo de pauta"
+        ],
+        "links": [
+          {
+            "label": "Instagram",
+            "url": "https://www.instagram.com/melocotonjujuy/"
+          },
+          {
+            "label": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=100045496764871#"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "rubro": "Abogacía",
     "casos": [
       {

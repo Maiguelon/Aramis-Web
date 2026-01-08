@@ -162,9 +162,10 @@ export default function Home() {
               {[
                 { src: "/img/clientes/walter-logo.svg", alt: "Walter Villegas", className: "scale-[1.2] md:scale-[1.25]" },
                 { src: "/img/clientes/dymec-logo.svg", alt: "DYMEC", className: "scale-[1.15] md:scale-[1.18]" },
-                { src: "/img/clientes/estudio-logo.svg", alt: "Bracamonte Fellner", className: "scale-[1.15] md:scale-[1.2]" },
+                { src: "/img/clientes/melocoton-logo.svg", alt: "Melocotón Multirubro", className: "scale-[1.1] md:scale-[1.4]" },
+                { src: "/img/clientes/estudio-logo.svg", alt: "Bracamonte Fellner", className: "scale-[1.15] md:scale-[1.4]" },
                 { src: "/img/clientes/aura-logo.svg", alt: "AURA", className: "scale-[1] md:scale-[1.05]" },
-                { src: "/img/clientes/beecomex-logo.svg", alt: "Bee Comex", className: "scale-[1.05] md:scale-[1.1]" },
+                { src: "/img/clientes/beecomex-logo.svg", alt: "Bee Comex", className: "scale-[1.05] md:scale-[1.1]" },               
               ].map(({ src, alt, className }) => (
                 <li key={alt} className="flex items-center justify-center h-16 md:h-20 w-full md:w-44 px-2">
                   <div className="relative w-full h-full">
