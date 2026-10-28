@@ -10,4 +10,10 @@ Solo se transmiten ruta de origen, cinco UTM y selecciones permitidas. No se ree
 
 La captura no depende de la PC: Tally guarda el envío. n8n local consulta después los pendientes; la persona no tiene que esperar a la IA para enviar. Un bloqueo del iframe permite abrir el formulario en otra pestaña. No se declara éxito basándose en que el iframe haya cargado.
 
+Un evento de envío de Tally reduce la altura de la confirmación. Se validan origen, ventana concreta del iframe e ID de formulario; un mensaje de otra página o del otro formulario de la misma web no puede marcarlo como enviado. Las respuestas no se registran en consola ni se copian a analítica.
+
+Piloto conectado verificado el 28 de octubre de 2026 con el formulario `4aaD4k`: contacto y cotizador llegaron a Tally y n8n; reutilizaron un contacto en HubSpot y generaron sus notas, tareas y correos internos. La prueba sin consentimiento fue bloqueada por Tally. Las selecciones del plan y UTM se comprobaron con el payload real. La confirmación se mostró en español y redujo su altura a 320 px. La revisión final móvil sigue pendiente antes del despliegue.
+
+El worker local sigue en modo `pilot`: procesa solo email ficticio `@example.com` con mensaje que empiece por `PRUEBA FICTICIA:`. Publicar esta web con el ID de Tally no activa por sí solo el procesamiento de leads reales.
+
 Antes de desplegar: completar un envío ficticio desde contacto y otro desde el cotizador; comprobar selecciones, consentimiento, consulta en Tally y recorrido en HubSpot. Verificar vista móvil y revisar el aviso de privacidad de Aramis. Los cambios de este repositorio no se publican automáticamente por el agente.
