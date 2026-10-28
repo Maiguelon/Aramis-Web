@@ -240,7 +240,7 @@ export default function PlanCard({
             value={formData.redes}
             onChange={handleChange}
           />
-          <label className="flex items-start gap-2 text-sm">
+          <label className={`flex items-start gap-2 text-sm ${premium ? 'text-white' : 'text-gray-700'}`}>
             <input type="checkbox" name="consentimiento_contacto" required className="mt-1" />
             <span>{CONTACT_CONSENT}</span>
           </label>
