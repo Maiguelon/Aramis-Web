@@ -1,25 +1,31 @@
 import { useState } from "react";
 import { FaWhatsapp, FaFacebook, FaInstagram, FaEnvelope } from "react-icons/fa";
+import TallyLeadForm, { TALLY_ENABLED } from './TallyLeadForm';
+import { CONTACT_CONSENT } from '../lib/lead-intake.mjs';
 
 export default function Footer() {
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const data = new FormData(form);
-
-    const response = await fetch(form.action, {
+    setEnviando(true); setError('');
+    try {
+      const response = await fetch(form.action, {
       method: "POST",
       body: data,
       headers: { Accept: "application/json" },
     });
 
-    if (response.ok) {
+    if (!response.ok) throw new Error('submission_failed');
       setEnviado(true);
       form.reset();
       setTimeout(() => setEnviado(false), 5000);
-    }
+    } catch { setError('No pudimos confirmar el envío. Podés intentarlo de nuevo o escribirnos por WhatsApp.'); }
+    finally { setEnviando(false); }
   };
 
   return (
@@ -81,7 +87,7 @@ export default function Footer() {
         </div>
 
         {/* Formulario */}
-        <form
+        {TALLY_ENABLED ? <div><h2 className="text-xl font-bold mb-2">¿Querés que te contactemos?</h2><TallyLeadForm sourceForm="footer" /></div> : <form
           onSubmit={handleSubmit}
           action="https://formspree.io/f/movwqvag"
           method="POST"
@@ -109,18 +115,23 @@ export default function Footer() {
             className="w-full p-2 rounded text-primary"
           />
 
-          <button
+          <label className="flex items-start gap-2 text-sm">
+            <input type="checkbox" name="consentimiento_contacto" value="true" required className="mt-1" />
+            <span>{CONTACT_CONSENT}</span>
+          </label>
+          <button disabled={enviando}
             type="submit"
             className="bg-accent-yellow hover:bg-bg-light text-primary px-4 py-2 rounded-md font-semibold transition"
           >
-            Enviar
+            {enviando ? 'Enviando…' : 'Enviar'}
           </button>
           {enviado && (
             <div className="mt-4 bg-green-500 text-bg-light p-2 rounded-md">
               ¡Gracias! Te vamos a contactar pronto.
             </div>
           )}
-        </form>
+          {error && <p role="alert">{error}</p>}
+        </form>}
       </div>
     </footer>
   );

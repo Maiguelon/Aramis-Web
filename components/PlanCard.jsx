@@ -1,6 +1,8 @@
 // components/PlanCard.jsx
 import React, { useState, useEffect } from 'react';
 import { ArrowRightCircle } from 'lucide-react';
+import TallyLeadForm, { TALLY_ENABLED } from './TallyLeadForm';
+import { CONTACT_CONSENT } from '../lib/lead-intake.mjs';
 
 const colorStyles = {
   mensual: "border-primary text-primary",
@@ -25,6 +27,8 @@ export default function PlanCard({
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [enviado, setEnviado] = useState(false);
   const [enviadoBanda, setEnviadoBanda] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     nombre: '',
     contacto: '',
@@ -42,15 +46,18 @@ export default function PlanCard({
       nombre: formData.nombre,
       contacto: formData.contacto,
       redes: formData.redes,
+      consentimiento_contacto: e.currentTarget.elements.consentimiento_contacto.checked,
       plan: JSON.stringify({ selections, precioMensual, costoUnicos, frases: phrases })
     };
+    setEnviando(true); setError('');
     try {
       const response = await fetch('https://formspree.io/f/movwqvag', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-      if (response.ok) {
+      if (!response.ok) throw new Error('submission_failed');
+      {
         setEnviado(true);
         setEnviadoBanda(true);
         setFormData({ nombre: '', contacto: '', redes: '' });
@@ -62,9 +69,8 @@ export default function PlanCard({
           setMostrarFormulario(false);
         }, 4000);
       }
-    } catch (err) {
-      console.error('Error al enviar el formulario:', err);
-    }
+    } catch { setError('No pudimos confirmar el envío. Intentá de nuevo o escribinos por WhatsApp.'); }
+    finally { setEnviando(false); }
   };
 
   const handleChange = (e) => {
@@ -206,6 +212,7 @@ export default function PlanCard({
 
       {/* Formulario emergente */}
       {mostrarFormulario && (
+        TALLY_ENABLED ? <TallyLeadForm sourceForm="plan_card" title={titulo} selections={selections} /> :
         <form onSubmit={handleSubmit} className="space-y-4 mt-4 animate-fade-in">
           <input
             type="text"
@@ -233,11 +240,15 @@ export default function PlanCard({
             value={formData.redes}
             onChange={handleChange}
           />
-          <button
+          <label className="flex items-start gap-2 text-sm">
+            <input type="checkbox" name="consentimiento_contacto" required className="mt-1" />
+            <span>{CONTACT_CONSENT}</span>
+          </label>
+          <button disabled={enviando}
             type="submit"
             className="bg-accent-yellow text-primary font-bold px-6 py-2 rounded-full w-full hover:bg-accent-blue hover:text-white transition-all"
           >
-            Enviar
+            {enviando ? 'Enviando…' : 'Enviar'}
           </button>
           
           {/* AQUÍ ESTÁ EL CARTELITO VERDE DE ÉXITO */}
@@ -246,6 +257,7 @@ export default function PlanCard({
               ¡Gracias! Te vamos a contactar pronto.
             </div>
           )}
+          {error && <p role="alert">{error}</p>}
         </form>
       )}
     </div>
