@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaWhatsapp, FaFacebook, FaInstagram, FaEnvelope } from "react-icons/fa";
-import TallyLeadForm, { TALLY_ENABLED } from './TallyLeadForm';
+import TallyLeadLink, { TALLY_ENABLED } from './TallyLeadLink';
 import { CONTACT_CONSENT } from '../lib/lead-intake.mjs';
 
 export default function Footer() {
@@ -87,7 +87,7 @@ export default function Footer() {
         </div>
 
         {/* Formulario */}
-        {TALLY_ENABLED ? <div><h2 className="text-xl font-bold mb-2">¿Querés que te contactemos?</h2><TallyLeadForm sourceForm="footer" /></div> : <form
+        {TALLY_ENABLED ? <div className="space-y-4"><h2 className="text-xl font-bold">¿Querés que te contactemos?</h2><p className="max-w-md">Contanos qué necesitás y revisaremos tu consulta personalmente.</p><TallyLeadLink sourceForm="footer" /></div> : <form
           onSubmit={handleSubmit}
           action="https://formspree.io/f/movwqvag"
           method="POST"

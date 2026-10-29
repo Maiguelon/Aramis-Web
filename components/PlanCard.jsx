@@ -1,7 +1,7 @@
 // components/PlanCard.jsx
 import React, { useState, useEffect } from 'react';
 import { ArrowRightCircle } from 'lucide-react';
-import TallyLeadForm, { TALLY_ENABLED } from './TallyLeadForm';
+import TallyLeadLink, { TALLY_ENABLED } from './TallyLeadLink';
 import { CONTACT_CONSENT } from '../lib/lead-intake.mjs';
 
 const colorStyles = {
@@ -198,7 +198,13 @@ export default function PlanCard({
       </div>
 
       {/* Botón principal */}
-      <button
+      {TALLY_ENABLED ? (
+        <TallyLeadLink sourceForm="plan_card" title={titulo} selections={selections}
+          className="mt-4 bg-accent-yellow text-primary font-bold px-6 py-3 rounded-full w-full flex items-center justify-center gap-2 shadow-lg hover:bg-accent-blue hover:text-white transition-all duration-300 text-lg group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-yellow">
+          ¡Quiero este plan!
+          <ArrowRightCircle className="ml-1 group-hover:translate-x-1 transition-transform duration-300" size={28} />
+        </TallyLeadLink>
+      ) : <button
         onClick={() => setMostrarFormulario(!mostrarFormulario)}
         className={`
           mt-4 ${premium ? "bg-accent-yellow text-black" : "bg-accent-yellow text-primary"}
@@ -208,11 +214,10 @@ export default function PlanCard({
       >
         ¡Quiero este plan!
         <ArrowRightCircle className="ml-1 group-hover:translate-x-1 transition-transform duration-300" size={28} />
-      </button>
+      </button>}
 
       {/* Formulario emergente */}
-      {mostrarFormulario && (
-        TALLY_ENABLED ? <TallyLeadForm sourceForm="plan_card" title={titulo} selections={selections} /> :
+      {!TALLY_ENABLED && mostrarFormulario && (
         <form onSubmit={handleSubmit} className="space-y-4 mt-4 animate-fade-in">
           <input
             type="text"
