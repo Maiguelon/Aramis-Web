@@ -199,7 +199,7 @@ export default function PlanCard({
 
       {/* Botón principal */}
       {TALLY_ENABLED ? (
-        <TallyLeadLink sourceForm="plan_card" title={titulo} selections={selections}
+        <TallyLeadLink sourceForm="plan_card" title={titulo} selections={selections} descriptionClassName={premium ? 'text-gray-200' : 'text-gray-700'}
           className="mt-4 bg-accent-yellow text-primary font-bold px-6 py-3 rounded-full w-full flex items-center justify-center gap-2 shadow-lg hover:bg-accent-blue hover:text-white transition-all duration-300 text-lg group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-yellow">
           ¡Quiero este plan!
           <ArrowRightCircle className="ml-1 group-hover:translate-x-1 transition-transform duration-300" size={28} />
