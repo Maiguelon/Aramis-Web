@@ -17,3 +17,11 @@ Piloto conectado verificado el 28 de octubre de 2026 con el formulario `4aaD4k`:
 El 29 de octubre de 2026 se autorizó activar el worker local en modo `live`: admite consultas reales con consentimiento, sin dominio de email especial ni prefijo de prueba. El modo se controla en n8n y no se puede cambiar desde el formulario. La tarjeta va al destinatario interno configurado; no se envía correo al prospecto. El export público del flujo sigue deshabilitado por defecto.
 
 Validación del cambio: tres pruebas de enlaces/atribución y compilación de producción; apertura real desde el footer en otra pestaña conservando UTM. Vista del footer comprobada a 479 px sin desbordamiento horizontal. Los cambios de este repositorio no se publican automáticamente por el agente: hacer push del commit y comprobar el despliegue del proyecto que sirve `aramis.agency`, con la variable configurada en Production.
+
+## Resumen visible del plan · 31 de octubre de 2026
+
+Los enlaces de planes prearmados y del cotizador incorporan `plan_title` y `plan_summary` cuando hay servicios seleccionados. El resumen se genera a partir de la misma lista permitida que produce el JSON de `plan`: cantidades, servicios y las historias bonificadas ya anunciadas en la tarjeta. No incorpora precios, parámetros arbitrarios de la URL ni datos personales. Los enlaces del footer y los planes vacíos no añaden estos textos.
+
+Ejemplos: «Pack Video (Reels)» → «4 reels por mes · Historias bonificadas»; un plan personalizado con cuatro posts y web → «4 posts por mes · Historias bonificadas · Página personalizada».
+
+El formulario de Tally necesita la actualización de presentación preparada en LeadOps para mostrar estos campos mediante menciones y lógica condicional. El código del enlace por sí solo no cambia el formulario alojado en Tally. Estado al preparar este commit: cinco pruebas web y compilación de producción correctas; actualización y revisión visual en Tally pendientes porque Docker no inicia y la navegación del asistente está desactivada. No se presenta como una verificación conectada.
